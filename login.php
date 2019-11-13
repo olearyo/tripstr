@@ -8,7 +8,7 @@ include("includes/db-config.php");
 	<body>
 		<form action="process-login.php" method="POST">
 		<fieldset>
- 					<br/>email: <input type="text" name="username" required />   
+ 					<br/>email: <input type="text" name="email" required />   
 					<br/>password: <input type="password" name="password" required/>  
 		 </fieldset>
 
