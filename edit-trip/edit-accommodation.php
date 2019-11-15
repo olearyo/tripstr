@@ -13,7 +13,7 @@
         $accoId = $_GET["accoId"];
         include("../includes/db-config.php");
 
-        $stmt = $pdo->prepare("SELECT * FROM `accommodations` WHERE `accoId` = $accoId");
+        $stmt = $pdo->prepare("SELECT * FROM `accommodations` WHERE `accoId` = '$accoId'");
         $stmt->execute();
         $row = $stmt->fetch(); 
 
@@ -24,7 +24,9 @@
     </header>
     <main>
         <div class="container">
-            <h1>Accommodation</h1>
+            <h1>Accommodation
+                <a id="popupBtn" class="delete" href="delete-accommodation?accoId=<?php echo($accoId);?>">Delete</a>
+            </h1>
             <div class="form-container">
                 <form action="process-accommodation.php" method="POST">
                     <input type="hidden" name="accoId" value="<?php echo($accoId); ?>">
@@ -60,5 +62,16 @@
         </div>
         
     </main>
+
+    <div id="popupId" class="popup-background">
+        <div class="popup">
+            <p>Are you sure you want to delete the record?</p>
+            <a id="cancelDelete" class="button" href="#">Cancel</a>
+            <a id="yesDelete" class="button secondary" href="process-delete.php?accoId=<?php echo($accoId); ?>">Delete</a>
+        </div>
+    </div>
+
+    <script src="../js/tripstr.js"></script>
+
 </body>
 </html>
