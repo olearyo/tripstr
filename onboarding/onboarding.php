@@ -16,14 +16,33 @@ if (isset($_POST['submit'])) {
 // $fromDate = $_POST['fromDate'];
 // $toDate = $_POST['toDate'];
 // $type = $_POST['type'];
-var_dump($_POST);
+// var_dump($_POST);
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php
+    include("../includes/header.php");
+    ?>
+    <title>Create a Trip</title>
+</head>
+<body>
 
-	<body>
-    <p>You're one step closer to creating your trip!</p>
-    <p><a href="onboarding-register.php">Register</a>
-    <p><a href="onboarding-login.php">Login</a>
+    <header>
+        <!-- TOP NAVIGATION -->
+    </header>
+    <main>
+        <div class="container">
+            <h1>Create a Trip</h1>
 
-	</body>
+                <div class="box">
+
+                    <h2>Awesome!</h2>
+                    <p>you're one step closer to creating your trip</p>
+
+                    <p><a href="onboarding-register.php">Register</a>
+                    <p><a href="onboarding-login.php">Login</a>     
+                </div>
+        </div>
+
 </html>

@@ -1,5 +1,20 @@
 <?php session_start();
 //process-login.php
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php
+    include("../includes/header.php");
+    ?>
+    <title>Register</title>
+</head>
+<body>
+
+    <header>
+        <!-- TOP NAVIGATION -->
+    </header>
+<?php
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -23,6 +38,13 @@ if($stmt->rowCount()==1){
 	
 	if($_SESSION['type'] == 1){ 
 		$randomNum = rand(1000,5000); 
+		$stmt = $pdo->prepare("SELECT * FROM `trips` 
+			WHERE `uniqueId` = ?");
+		$stmt->execute([$randomNum]);
+		$row = $stmt->fetchAll();
+		while ($stmt->rowCount() > 0){
+			$randomNum = rand(1000,5000); 
+		}
 	
 		// echo($randomNum);
 	
@@ -31,7 +53,11 @@ if($stmt->rowCount()==1){
 		VALUES (?, ?, ?, ?, ?, ?)");
 	
 		$stmt->execute([$_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type'], $randomNum]);
-	
+		if($stmt->rowCount() ==1 ){
+			header("Location: onboarding-group.php?gid=".$randomNum);
+		}
+		
+		
 	}elseif($_SESSION['type'] == 0){
 
     $stmt = $pdo->prepare("INSERT INTO `trips` 
@@ -40,12 +66,21 @@ if($stmt->rowCount()==1){
 
     $stmt->execute([$_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type']]);
 
-	// header("Location: onboarding-group.php");
-	}
+
+	// 
 
 
 }else{
-	echo("You have entered an invalid username or password, please try again");
-}
+	?>
+		<main>
+			<div class="container">
 
+				<h1>Login</h1>
+				<p>You have entered an invalid username or password, please <a href="onboarding-login.php">try again</a></p>
+			</div>
+		</main>
+
+<?php
+}
+}
 ?>
