@@ -25,7 +25,11 @@
     <main>
         <div class="container">
             <h1>Accommodation
-                <a id="popupBtn" class="delete" href="delete-accommodation?accoId=<?php echo($accoId);?>">Delete</a>
+            <?php 
+                $deleteUrl = 'process-delete.php?accoId='.$accoId;
+                $backUrl = '../edit-trip/edit-accommodation.php?accoId='.$accoId;
+            ?>
+                <a class="delete" href="../components/promptDelete.php?yes=<?php echo($deleteUrl);?>&no=<?php echo($backUrl);?>">Delete</a>
             </h1>
             <div class="form-container">
                 <form action="process-accommodation.php" method="POST">
@@ -63,14 +67,10 @@
         
     </main>
 
-    <div id="popupId" class="popup-background">
-        <div class="popup">
-            <p>Are you sure you want to delete the record?</p>
-            <a id="cancelDelete" class="button" href="#">Cancel</a>
-            <a id="yesDelete" class="button secondary" href="process-delete.php?accoId=<?php echo($accoId); ?>">Delete</a>
-        </div>
-    </div>
+    
+    
 
+    <script src="../js/core.js"></script>
     <script src="../js/tripstr.js"></script>
 
 </body>
