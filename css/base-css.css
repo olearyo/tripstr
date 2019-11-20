@@ -6,6 +6,46 @@ body {
   box-sizing: border-box;
 }
 
+.container {
+  width: 50%;
+  min-width: 400px;
+  margin: 0 auto;
+}
+
+/* ONBOARDING */
+
+.box {
+  width: 50%;
+  min-height: 400px;
+  min-width: 300px;
+  margin-top: 20%;
+  padding: 30px;
+  box-shadow: 1px 1px 30px #8EA2E8;
+  border-radius: 20px;
+  text-align: center;
+}
+
+
+/* LINKS */
+
+a:link {
+  color: #4227F2;
+}
+
+
+a:visited {
+  color: #696B8C;
+}
+
+
+a:hover {
+  color: #575FF2;
+}
+
+
+
+/* FORMS */
+
 input[type="text"], input[type="email"], input[type="password"] {
   border: 1px solid #dddddd;
   width: 100%;
@@ -13,7 +53,9 @@ input[type="text"], input[type="email"], input[type="password"] {
   padding: 0 10px;
   border-radius: 4px;
   margin: 0;
+  font-size: 1em;
 }
+
 textarea {
   width: 100%;
   min-height: 120px;
@@ -23,11 +65,6 @@ textarea {
   margin: 0;
 }
 
-.container {
-  width: 50%;
-  min-width: 400px;
-  margin: 0 auto;
-}
 .form-container .form-input {
   margin: 10px 0px;
   display: inline-block;
@@ -40,6 +77,8 @@ textarea {
 .form-input.half {
   width: calc(50% - 2px);
 }
+
+
 
 .button {
   width: 100%;
@@ -91,3 +130,36 @@ h1 .delete{
   display: none;
 }
 /* =========== POPUP STYLE */
+}
+
+
+/* ERRORS */
+
+
+
+
+
+/* FONTS */
+
+h1{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 2em;
+  color: #272857;
+
+}
+
+h2, label {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 500;
+  font-size: 1.2em;
+  color: #333333;
+
+}
+
+p, input[type="text"], input[type="date"]{
+  font-family: 'Open Sans', sans-serif;
+  size: 18px;
+  color: #333333;
+
+ }
