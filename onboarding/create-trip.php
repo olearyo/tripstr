@@ -3,27 +3,65 @@
 include("../includes/db-config.php");
 
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php
+    include("../includes/header.php");
+    ?>
+    <title>Create a Trip</title>
+</head>
+<body>
 
+    <header>
+        <!-- TOP NAVIGATION -->
+    </header>
+    <main>
+    <div class="container">
+        <h1>Create a Trip</h1>
+        <div class="form-container">
+		
+        <form action="onboarding.php" method="POST">
+		
+        <div class="form-input">
+            <label for="tripName">Trip Name:</label>
+                <input id="tripName" type="text" name="tripName" required />
+        </div>
 
-	<body>
-		<form action="onboarding.php" method="POST">
-		<fieldset>
- 			<br/>Trip Name: <input type="text" name="tripName" required />   
-            <br/>Destination: <input type="text" name="destination" required/> 
-            <br/>From: <input type="date" name="fromDate" required />   
-            <br/>To: <input type="date" name="toDate" required/>   
-        </fieldset>
+        <div class="form-input">    
+            <label for="destination">Destination:</label> 
+                <input id="destination" type="text" name="destination" required/> 
+        </div>
+        
+        <div class="form-input half">
+            <label for="fromDate">From:</label> 
+                <input id="fromDate" type="date" name="fromDate" required />   
+        </div>
 
-            <p>What type of trip are you creating?</p>
-            <input type="radio" name="type" value="0"> Solo<br>
-            <input type="radio" name="type" value="1"> Group<br>  
+        <div class="form-input half">
+            <label for="toDate">To:</label> 
+                <input id="toDate" type="date" name="toDate" required/>   
+        </div>
+
+        <div class="form-input">
+            <label for="type">What type of trip are you creating?</label> 
+                <div class="form-input half">
+                    <input type="radio" class="radio-1" name="type" value="0"> Solo<br>
+                </div>
+
+                <div class="form-input half">
+                    <input type="radio" class="radio-2" name="type" value="1"> Group<br>  
+                </div>   
+                </div>
+        </div>
                     
-
-
-			<input name="submit" type="submit"/>
+        <div class="form-input">
+            <input class="button" type="submit"  name="submit" value="continue"/>
+        </div>
 
 		</form>
+        </div>
+    </div>
 	</body>
 </html>
 
