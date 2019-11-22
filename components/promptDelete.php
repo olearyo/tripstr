@@ -14,8 +14,8 @@ $no = $_GET['no'];
 
 </head>
 <body>
-<div id="popup" class="showPopup">
-        <div class="popup-content">
+<div id="popup" class="prompt-container">
+        <div class="prompt-content">
             <p>Are you sure you want to delete the record?</p>
             <a id="no" class="button" href="<?php echo($no); ?>">Cancel</a>
             <a id="yes" class="button secondary" href="<?php echo($yes); ?>">Delete</a>

@@ -88,7 +88,7 @@ textarea {
   cursor: pointer;
   background-color: #5637ff;
   font-size: 1rem;
-  color: #ffffff;
+  color: #ffffff !important;
   text-transform: uppercase;
   text-decoration: none;
   padding: 10px;
@@ -97,7 +97,7 @@ textarea {
 .button.secondary{
   background-color: #ffffff;
   border: 1px solid #dddddd;
-  color: #333333;
+  color: #333333 !important;
 }
 
 h1 .delete{
@@ -107,21 +107,21 @@ h1 .delete{
 
 
 /* =========== POPUP STYLE */
-.showPopup{
+.prompt-container{
   display: block;
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0,0,0,0.8);
+  background-color:#ffffff;
   top: 0;
   left: 0;
 }
-.popup-content{
+.prompt-content{
   width: 60%;
   min-width: 400px;
   max-width: 800px;
-  background-color: #ffffff;
-  padding: 20px;
+  background-color: #f8f8f8;
+  padding: 50px;
   margin: 0 auto;
   margin-top: 50px;
   border-radius: 7px;
@@ -130,7 +130,6 @@ h1 .delete{
   display: none;
 }
 /* =========== POPUP STYLE */
-}
 
 
 /* ERRORS */
