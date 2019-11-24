@@ -11,6 +11,13 @@
 <body>
     <?php
         $accoId = $_GET["accoId"];
+        // $tripId = $_GET["tripId"];
+        // $category = $_GET["category"];
+        // $categoryId = $_GET["categoryId"];
+        $tripId = 1;
+        $category = 1;
+        $categoryId = 1;
+
         include("../includes/db-config.php");
 
         $stmt = $pdo->prepare("SELECT * FROM `accommodations` WHERE `accoId` = '$accoId'");
@@ -26,43 +33,68 @@
         <div class="container">
             <h1>Accommodation
             <?php 
-                $deleteUrl = 'process-delete.php?accoId='.$accoId;
+                $deleteUrl = '../edit-trip/process-delete-accommodation.php?accoId='.$accoId;
                 $backUrl = '../edit-trip/edit-accommodation.php?accoId='.$accoId;
             ?>
                 <a class="delete" href="../components/promptDelete.php?yes=<?php echo($deleteUrl);?>&no=<?php echo($backUrl);?>">Delete</a>
             </h1>
-            <div class="form-container">
-                <form action="process-accommodation.php" method="POST">
-                    <input type="hidden" name="accoId" value="<?php echo($accoId); ?>">
-                    <div class="form-input">
-                        <label for="accoName">Accommodation Name</label>
-                        <input id="accoName" name="accoName" type="text" placeholder="Accommodation e.g. Hotel Name" value="<?php echo($row['accoName']); ?>">
-                    </div>
-                    <div class="form-input half">
-                        <label for="checkIn">Check In</label>
-                        <input id="checkIn" name="checkIn" type="text" placeholder="Check in" value="<?php echo($row['checkIn']); ?>">
-                    </div>
-                    <div class="form-input half">
-                        <label for="checkOut">Check Out</label>
-                        <input id="checkOut" name="checkOut" type="text" placeholder="Check out" value="<?php echo($row['checkOut']); ?>">
-                    </div>
-                    <div class="form-input">
-                        <label for="address">Address</label>
-                        <textarea id="address" name="address" type="text" placeholder="Address"><?php echo($row['address']); ?></textarea>
-                    </div>
-                    <div class="form-input half">
-                        <label for="bookingId">Booking ID</label>
-                        <input id="bookingId" name="bookingId" type="text" placeholder="Booking ID" value="<?php echo($row['bookingId']); ?>">
-                    </div>
-                    <div class="form-input">
-                        <label for="others">Others</label>
-                        <textarea id="others" name="others" type="text" placeholder="others"><?php echo($row['others']); ?></textarea>
-                    </div>
-                    <div class="form-input">
-                        <input class="button" type="submit" value="Save" />
-                    </div>
-                </form>
-            </div>
+            <section>
+                <div class="form-container">
+                    <form action="process-accommodation.php" method="POST">
+                        <input type="hidden" name="accoId" value="<?php echo($accoId); ?>">
+                        <div class="form-input">
+                            <label for="accoName">Accommodation Name</label>
+                            <input id="accoName" name="accoName" type="text" placeholder="Accommodation e.g. Hotel Name" value="<?php echo($row['accoName']); ?>">
+                        </div>
+                        <div class="form-input half">
+                            <label for="checkIn">Check In</label>
+                            <input id="checkIn" name="checkIn" type="text" placeholder="Check in" value="<?php echo($row['checkIn']); ?>">
+                        </div>
+                        <div class="form-input half">
+                            <label for="checkOut">Check Out</label>
+                            <input id="checkOut" name="checkOut" type="text" placeholder="Check out" value="<?php echo($row['checkOut']); ?>">
+                        </div>
+                        <div class="form-input">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" type="text" placeholder="Address"><?php echo($row['address']); ?></textarea>
+                        </div>
+                        <div class="form-input half">
+                            <label for="bookingId">Booking ID</label>
+                            <input id="bookingId" name="bookingId" type="text" placeholder="Booking ID" value="<?php echo($row['bookingId']); ?>">
+                        </div>
+                        <div class="form-input">
+                            <label for="others">Others</label>
+                            <textarea id="others" name="others" type="text" placeholder="others"><?php echo($row['others']); ?></textarea>
+                        </div>
+                        <div class="form-input">
+                            <input class="button" type="submit" value="Save" />
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <!-- FILES -->
+            <section>
+                <h1>Files</h1>
+                <?php
+                    $stmtFile = $pdo->prepare("SELECT * FROM `files` WHERE `tripId` = '$tripId'");
+                    $stmtFile->execute();
+                ?>
+                <ul>
+                <?php
+                    while($rowFile = $stmtFile->fetch()) {
+                        echo("<li>");
+                            echo("<a href='#'>");
+                            echo($rowFile["path"]);
+                            echo("</a>");
+                            echo("<a href='#'>");
+                            echo("Delete");
+                            echo("</a>");
+                        echo("</li>");
+                    }
+                ?>
+                </ul>
+                <a href="upload-file.php?accoId=<?php echo($accoId) ?>&tripId=<?php echo($tripId) ?>&category=<?php echo($category) ?>&categoryId=<?php echo($categoryId) ?>" class="button secondary">Upload new file</a>
+            </section>
         </div>
         
     </main>
@@ -72,6 +104,17 @@
 
     <script src="../js/core.js"></script>
     <script src="../js/tripstr.js"></script>
-
+    <?php 
+        include("../includes/dateTime.php");
+    ?>
+    <script>
+        
+        let checkIn = document.querySelector('#checkIn')
+        let dateTime = document.querySelector('#dateTime')
+        checkIn.addEventListener('focus', showHideDate, false)
+        checkOut.addEventListener('focus', showHideDate, false)
+        setDateUI()
+    </script>
+    
 </body>
 </html>
