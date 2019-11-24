@@ -38,10 +38,16 @@ if (isset($_POST['submit'])) {
                 <div class="box">
 
                     <h2>Awesome!</h2>
-                    <p>you're one step closer to creating your trip</p>
+                    <p>You're one step closer to creating your trip. Please register or login so you can view and edit your upcoming trip. </p>
 
-                    <p><a href="onboarding-register.php">Register</a>
-                    <p><a href="onboarding-login.php">Login</a>     
+                    <!-- <a  href="onboarding-login.php" class="button">Login</a> -->
+                    <div class="login">
+                        <button class="button" onclick="window.location.href = 'onboarding-login.php';">LOGIN</button>
+                    </div>
+
+                    <div class="register">
+                        <button class="button" onclick="window.location.href = 'onboarding-register.php';">REGISTER</button>
+                    <div>
                 </div>
         </div>
 
