@@ -3,7 +3,7 @@
 $tripId = $_GET['tripId'];
 $userId = NULL;
 
-include("includes/db-config.php");
+include("../includes/db-config.php");
 
 $tripsTable = $pdo->prepare("SELECT * FROM `trips` WHERE `tripId` = '$tripId';");
 $tripsTable -> execute();
