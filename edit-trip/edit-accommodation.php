@@ -80,16 +80,22 @@
                     $stmtFile->execute();
                 ?>
                 <ul>
+
                 <?php
+                    
+                    $backUrl = '../edit-trip/edit-accommodation.php?accoId='.$accoId;
+                    $i =0;
                     while($rowFile = $stmtFile->fetch()) {
+                        $deleteUrl.$i = '../edit-trip/delete-file.php?fileId='.$rowFile[fileId];
                         echo("<li>");
-                            echo("<a href='#'>");
-                            echo($rowFile["path"]);
+                            echo("<a href='$rowFile[path]'>");
+                            echo($rowFile["fileName"]);
                             echo("</a>");
-                            echo("<a href='#'>");
+                            echo("<a href='delete-file.php?fileId=$rowFile[fileId]'>");
                             echo("Delete");
                             echo("</a>");
                         echo("</li>");
+                        $i++;
                     }
                 ?>
                 </ul>

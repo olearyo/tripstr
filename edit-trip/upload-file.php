@@ -36,6 +36,10 @@
                     <input type="hidden" name="category" value="<?php echo($category); ?>">
                     <input type="hidden" name="categoryId" value="<?php echo($categoryId); ?>">
                     <div class="form-input">
+                        <label>File Name</label>
+                        <input required id="fileName" name="fileName" type="text" placeholder="Give a name to your file"/>
+                    </div>
+                    <div class="form-input">
                         <label>Select file</label>
                         <input id="travelFile" name="travelFile" type="file" />
                     </div>
