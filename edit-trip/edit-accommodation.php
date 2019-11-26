@@ -83,10 +83,10 @@
 
                 <?php
                     
-                    $backUrl = '../edit-trip/edit-accommodation.php?accoId='.$accoId;
                     $i =0;
                     while($rowFile = $stmtFile->fetch()) {
-                        $deleteUrl.$i = '../edit-trip/delete-file.php?fileId='.$rowFile[fileId];
+                        $deleteUrl.$i ="../components/promptDelete.php?yes=$deleteUrl.$i&no=$backUrl";
+                        $deleteUrl.$i = "../edit-trip/delete-file.php?fileId=".$rowFile['fileId'];
                         echo("<li>");
                             echo("<a href='$rowFile[path]'>");
                             echo($rowFile["fileName"]);
