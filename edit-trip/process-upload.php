@@ -52,6 +52,8 @@
                     VALUES (null, '$fileName', '$target_file', '$tripId', '$category', '$categoryId')");
                 $stmt->execute();
 
+                header("Location:edit-accommodation.php?accoId=$accoId");
+
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }

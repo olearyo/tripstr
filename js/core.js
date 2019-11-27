@@ -42,20 +42,34 @@ function setDateUI() {
 
 	// ++++++++++++++++++ RENDER MONTHS
 	let monthList = document.querySelector('#month')
-	for (let month of months) {
-		let currentMonth = new Date().getMonth()
+	function renderMonths(e, isFirstCall = false) {
+		if (!isFirstCall) {
+			while (monthList.hasChildNodes()) {
+				monthList.removeChild(monthList.firstChild)
+			}
+		}
 
-		let monthOption = document.createElement('option')
-		monthOption.setAttribute('value', months.indexOf(month) + 1) // In JS month starts at 0 whereas in MySQL it begins with 01
+		for (let month of months) {
+			let currentMonth = new Date().getMonth()
 
-		// Disable past months
-		months.indexOf(month) < currentMonth
-			? monthOption.setAttribute('disabled', 'true')
-			: null
+			let monthOption = document.createElement('option')
+			monthOption.setAttribute('value', months.indexOf(month) + 1) // In JS month starts at 0 whereas in MySQL it begins with 01
 
-		monthOption.appendChild(document.createTextNode(month))
-		monthList.appendChild(monthOption)
+			// Disable past months
+			let userSelectedYear = document.querySelector('#year').value
+			let currentYear = new Date().getFullYear()
+			if (
+				months.indexOf(month) < currentMonth &&
+				userSelectedYear == currentYear
+			) {
+				monthOption.setAttribute('disabled', 'true')
+			}
+
+			monthOption.appendChild(document.createTextNode(month))
+			monthList.appendChild(monthOption)
+		}
 	}
+	renderMonths(true)
 
 	// ++++++++++++++++++ RENDER DATES
 	let dateList = document.querySelector('#date')
@@ -80,7 +94,14 @@ function setDateUI() {
 	renderDates(true)
 
 	monthList.addEventListener('change', renderDates, false)
-	yearList.addEventListener('change', renderDates, false)
+	yearList.addEventListener(
+		'change',
+		function() {
+			renderMonths()
+			renderDates()
+		},
+		false
+	)
 
 	function getDayCount() {
 		let y = document.querySelector('#year').value
