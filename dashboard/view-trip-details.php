@@ -25,6 +25,7 @@ while($row = $tripsTable->fetch()) {
     echo($row["tripName"]);
     echo("</h2>");
 
+    //show accommodation details
     $accomDetailsTable = $pdo->prepare("SELECT * FROM `accommodations` WHERE `tripId` = $tripId;");
     $accomDetailsTable -> execute();
     $accomDetailsTable = $accomDetailsTable ->fetch();
