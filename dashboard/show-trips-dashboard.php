@@ -30,6 +30,7 @@ $tripsTable-> execute();
         echo("<br>");
         echo("Group members:  ");
         echo ($usgrTable['groups']);
+        echo("<a href='../group/group-home.php'> View Members</a>");
 
         //show stays
         $accomTable = $pdo->prepare("SELECT COUNT(accoId) as 'stays' FROM `accommodations` WHERE `accoId` = '$row[tripId]' "); 
