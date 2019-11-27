@@ -20,28 +20,46 @@ $tripsTable-> execute();
 		echo("<h3>");
 		echo($row["tripName"]);
         echo("</h3>");
-        
-        //show group members count
-        $usgrTable = $pdo->prepare("SELECT COUNT(userId) as 'groups' FROM `users-groups` WHERE `tripId` = '$row[tripId]' "); 
-        // $usgrTable = $pdo->prepare("SELECT * FROM `users-groups`"); 
-        $usgrTable->execute(); 
-        $usgrTable = $usgrTable ->fetch();
 
+        //show destination locations
+		echo("<br><br>");
+		echo("Destination : ");
+        echo($row["destination"]);
+        echo("<br><br>");
+
+        //show trip start and end date
+        echo("From : ");
+        echo($row["fromDate"]);
+        echo(" | ");
+        echo("To : ");
+        echo($row["toDate"]);
         echo("<br>");
-        echo("Group members:  ");
-        echo ($usgrTable['groups']);
-        echo("<a href='../group/group-home.php'> View Members</a>");
 
         //show stays
-        $accomTable = $pdo->prepare("SELECT COUNT(accoId) as 'stays' FROM `accommodations` WHERE `accoId` = '$row[tripId]' "); 
-        // $usgrTable = $pdo->prepare("SELECT * FROM `users-groups`"); 
+        $accomTable = $pdo->prepare("SELECT COUNT(accoId) as 'stays' FROM `accommodations` WHERE `accoId` = '$row[tripId]' ");  
         $accomTable->execute(); 
         $accomTable = $accomTable ->fetch();
-        echo("<br><br>");
+        echo("<br>");
         echo("Stays:  ");
         echo ($accomTable['stays']);
+
+        //show events
+        $eventsTable = $pdo->prepare("SELECT COUNT(eventId) as 'events' FROM `events` WHERE `eventId` = '$row[tripId]' "); 
+        $eventsTable->execute(); 
+        $eventsTable = $eventsTable ->fetch();
+        echo("<br><br>");
+        echo("Events:  ");
+        echo ($eventsTable['events']);
+
+        //show files
+        $filesTable = $pdo->prepare("SELECT COUNT(tripId) as 'files' FROM `files` WHERE `tripId` = '$row[tripId]' "); 
+        $filesTable->execute(); 
+        $filesTable = $filesTable ->fetch();
+        echo("<br><br>");
+        echo("Docs:  ");
+        echo ($filesTable['files']);
 		
-        // trying to show the user's name
+        // show the user's name
 		// $stmt2 = $pdo->prepare("SELECT `fullName` FROM `users` WHERE `userId` = :tripId;");
 		// $stmt2 -> bindParam(':tripId', $row["tripId"]);
 		// $stmt2 -> execute();
@@ -51,20 +69,19 @@ $tripsTable-> execute();
 		// 	echo($row2['fullName']);
 		// 	echo(" | ");
         // }
-        
-		echo("<br><br>");
-		echo("Destination : ");
-        echo($row["destination"]);
+
+        //show group members count
+        $usgrTable = $pdo->prepare("SELECT COUNT(userId) as 'groups' FROM `users-groups` WHERE `tripId` = '$row[tripId]' "); 
+        $usgrTable->execute(); 
+        $usgrTable = $usgrTable ->fetch();
         echo("<br><br>");
-        echo("From : ");
-        echo($row["fromDate"]);
-        echo(" | ");
-        echo("To : ");
-        echo($row["toDate"]);
+        echo("Group members:  ");
+        echo ($usgrTable['groups']);
+        echo("<a href='../group/group-home.php'> View Members</a>");
         echo("<br><br>");
         
-        echo("<a href=view-trip-details.php?tripId=$row[tripId]> View More </a>");
-		echo("<br><br>");
+        echo("<h3><a href=view-trip-details.php?tripId=$row[tripId]>Trip details </a></h3>");
+		echo("<br>");
 		
 ?>
 
