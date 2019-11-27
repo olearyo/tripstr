@@ -1,4 +1,8 @@
 <?php 
+include("../includes/session.php");
+
+if(isset($_SESSION['userId'])) {
+
     $accoId = $_POST['accoId'];
     $tripId = $_POST['tripId'];
     $accoName = $_POST['accoName'];
@@ -25,7 +29,7 @@
     }
 
     if($isEdit){
-        $stmt = $pdo->prepare("UPDATE `accommodations` SET `accoName` = '$accoName',
+        $stmt = $pdo->prepare("UPDATE `accommodations` SET `name` = '$accoName',
             `checkIn` = '$checkIn',
             `checkOut` = '$checkOut',
             `address` = '$address',
@@ -34,7 +38,7 @@
         $stmt->execute();
     } else {
         $stmtNew = $pdo->prepare("INSERT INTO `accommodations` 
-            (`accoId`, `tripId`, `accoName`, `checkIn`, `checkOut`, `bookingId`, `address`, `others`) 
+            (`accoId`, `tripId`, `name`, `checkIn`, `checkOut`, `bookingId`, `address`, `others`) 
             VALUES (NULL, '$tripId', '$accoName', '$checkIn', '$checkOut', '$bookingId', '$address', '$others');");
         $stmtNew->execute();
     }
@@ -43,4 +47,7 @@
 
     // Once dashboard is done redirect to dashboard
     header("Location: edit-accommodation.php?accoId=$accoId");
+} else {
+    echo("Please login to access this page");
+}
 ?>

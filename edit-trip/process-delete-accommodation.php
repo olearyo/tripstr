@@ -1,10 +1,15 @@
 <?php 
-    $accoId = $_GET['accoId'];
+include("../includes/session.php");
 
-    include("../includes/db-config.php");
+    if(isset($_SESSION['userId'])) {
+        
+        $accoId = $_GET['accoId'];
 
-    $stmt = $pdo->prepare("DELETE FROM `accommodations` WHERE `accommodations`.`accoId` = '$accoId'");
-    $stmt->execute();
+        include("../includes/db-config.php");
 
-    // header("Location: edit-accommodation.php?accoId=$accoId");
+        $stmt = $pdo->prepare("DELETE FROM `accommodations` WHERE `accommodations`.`accoId` = '$accoId'");
+        $stmt->execute();
+
+        // header("Location: edit-accommodation.php?accoId=$accoId");
+    }
 ?>
