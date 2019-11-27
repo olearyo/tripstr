@@ -1,8 +1,10 @@
 <?php 
-    $accoId = $_POST['accoId'];
+    include("../includes/session.php");
+    
+    if(isset($_SESSION['userId'])) {
+
     $fileName = $_POST['fileName'];
     $tripId = $_POST['tripId'];
-    $category = $_POST['category'];
     $categoryId = $_POST['categoryId'];
 
     include("../includes/db-config.php");
@@ -48,11 +50,11 @@
             if (move_uploaded_file($_FILES["travelFile"]["tmp_name"], $target_file)) {
                 echo "The file ". basename( $_FILES["travelFile"]["name"]). " has been uploaded.";
                 
-                $stmt = $pdo->prepare("INSERT INTO `files`(`fileId`, `fileName`, `path`, `tripId`, `category`, `categoryId`) 
-                    VALUES (null, '$fileName', '$target_file', '$tripId', '$category', '$categoryId')");
+                $stmt = $pdo->prepare("INSERT INTO `files`(`fileId`, `fileName`, `path`, `tripId`, `categoryId`) 
+                    VALUES (null, '$fileName', '$target_file', '$tripId', '$categoryId')");
                 $stmt->execute();
 
-                header("Location:edit-accommodation.php?accoId=$accoId");
+                // header("Location:");
 
             } else {
                 echo "Sorry, there was an error uploading your file.";
@@ -71,4 +73,5 @@
     // $stmt->execute();
 
     // header("Location: edit-accommodation.php?accoId=$accoId");
+    }
 ?>

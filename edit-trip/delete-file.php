@@ -1,4 +1,7 @@
 <?php
+include("../includes/session.php");
+
+if(isset($_SESSION['userId'])) {
 
     $fileId = $_GET['fileId'];
     include("../includes/db-config.php");
@@ -17,7 +20,7 @@
         $stmtDel = $pdo->prepare("DELETE FROM `files` WHERE `files`.`fileId` = '$fileId'");
         $stmtDel->execute();
     }
-
+}
 
 
 ?>

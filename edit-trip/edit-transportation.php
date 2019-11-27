@@ -7,7 +7,7 @@ include("../includes/session.php");
     <?php
         include("../includes/header.php");
     ?>
-    <title>Edit Accommodation</title>
+    <title>Edit Transportation</title>
 </head>
 <body>
     <?php
@@ -16,18 +16,14 @@ include("../includes/session.php");
     include("../includes/db-config.php");
 
         $isEdit = false;
+        $categoryId = 2;
 
         
-        $category = 1;
-        $categoryId = 1;
-        // $tripId = $_GET["tripId"];
-        // $category = $_GET["category"];
-        // $categoryId = $_GET["categoryId"];
-        if(isset($_GET['accoId']) && isset($_GET['tripId'])) {
-            $accoId = $_GET["accoId"]; 
+        if(isset($_GET['transId']) && isset($_GET['tripId'])) {
+            $transId = $_GET["transId"]; 
             $tripId = $_GET['tripId'];
 
-            $stmt = $pdo->prepare("SELECT * FROM `accommodations` WHERE `accoId` = '$accoId' AND `tripId` = '$tripId'");
+            $stmt = $pdo->prepare("SELECT * FROM `transportation` WHERE `transId` = '$transId' AND `tripId` = '$tripId'");
             $stmt->execute();
             $row = $stmt->fetch();
 
@@ -37,17 +33,18 @@ include("../includes/session.php");
                 $isEdit = true;
             }
         }
+        
     ?>
     <header>
         <!-- TOP NAVIGATION -->
     </header>
     <main>
         <div class="container">
-            <h1>Accommodation
+            <h1>Transportation
             <?php 
                 if($isEdit){
-                    $deleteUrl = '../edit-trip/process-delete-accommodation.php?accoId='.$accoId;
-                    $backUrl = '../edit-trip/edit-accommodation.php?accoId='.$accoId;
+                    $deleteUrl = '../edit-trip/process-delete-transportation.php?transId='.$transId;
+                    $backUrl = '../edit-trip/edit-transportation.php?transId='.$transId.'&tripId='.$tripId; // REPLACE THIS WITH DASHBOARD EXPANDED VIEW URL
             ?>
                 <a class="delete" href="../components/promptDelete.php?yes=<?php echo($deleteUrl);?>&no=<?php echo($backUrl);?>">Delete</a>
             <?php 
@@ -56,24 +53,28 @@ include("../includes/session.php");
             </h1>
             <section>
                 <div class="form-container">
-                    <form action="process-accommodation.php" method="POST">
-                        <input type="hidden" name="accoId" value="<?php if($isEdit){ echo($accoId);} ?>">
+                    <form action="process-transportation.php" method="POST">
+                        <input type="hidden" name="transId" value="<?php if($isEdit){ echo($transId);} ?>">
                         <input type="hidden" name="tripId" value="<?php echo($tripId); ?>">
                         <div class="form-input">
-                            <label for="accoName">Accommodation Name</label>
-                            <input id="accoName" name="accoName" type="text" placeholder="Accommodation e.g. Hotel Name" value="<?php if($isEdit){ echo($row['name']); } ?>">
+                            <label for="transName">Transportation Name</label>
+                            <input id="transName" name="transName" type="text" placeholder="e.g. Flight name or no." value="<?php if($isEdit){ echo($row['name']); } ?>">
                         </div>
                         <div class="form-input half">
-                            <label for="checkIn">Check In</label>
+                            <label for="departure">Departure</label>
+                            <input id="departure" name="departure" type="text" placeholder="e.g. Paris" value="<?php if($isEdit){ echo($row['departure']); } ?>">
+                        </div>
+                        <div class="form-input half">
+                            <label for="arrival">Arrival</label>
+                            <input id="arrival" name="arrival" type="text" placeholder="e.g. Toronto" value="<?php if($isEdit){ echo($row['arrival']); } ?>">
+                        </div>
+                        <div class="form-input half">
+                            <label for="checkIn">Departure Time</label>
                             <input id="checkIn" name="checkIn" type="text" placeholder="Check in" value="<?php if($isEdit){ echo($row['checkIn']); } ?>">
                         </div>
                         <div class="form-input half">
-                            <label for="checkOut">Check Out</label>
+                            <label for="checkOut">Arrival Time</label>
                             <input id="checkOut" name="checkOut" type="text" placeholder="Check out" value="<?php if($isEdit){ echo($row['checkOut']); } ?>">
-                        </div>
-                        <div class="form-input">
-                            <label for="address">Address</label>
-                            <textarea id="address" name="address" type="text" placeholder="Address"><?php if($isEdit){ echo($row['address']); } ?></textarea>
                         </div>
                         <div class="form-input half">
                             <label for="bookingId">Booking ID</label>
@@ -97,7 +98,6 @@ include("../includes/session.php");
                         echo("<h1>Files</h1>");
                         $stmtFile = $pdo->prepare("SELECT * FROM `files` WHERE `tripId` = '$tripId' AND `categoryId` = '$categoryId' ");
                         $stmtFile->execute();
-                    
                 ?>
                 <ul>
 
@@ -120,7 +120,7 @@ include("../includes/session.php");
                     
                 ?>
                 </ul>
-                <a href="upload-file.php?tripId=<?php echo($tripId) ?>&categoryId=<?php echo($categoryId) ?>" class="button secondary">Upload new file</a>
+                <a href="upload-file.php?tripId=<?php echo($tripId); ?>&categoryId=<?php echo($categoryId) ?>" class="button secondary">Upload new file</a>
                 <?php 
                     } // above if condition
                 ?>
