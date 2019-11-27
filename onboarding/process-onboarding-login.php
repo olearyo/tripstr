@@ -49,10 +49,10 @@ if($stmt->rowCount()==1){
 		// echo($randomNum);
 	
 		$stmt = $pdo->prepare("INSERT INTO `trips` 
-		(`tripName`, `destination`, `fromDate`, `toDate`, `type`, `uniqueId`) 
-		VALUES (?, ?, ?, ?, ?, ?)");
+		(`userId`, `tripName`, `destination`, `fromDate`, `toDate`, `type`, `uniqueId`) 
+		VALUES (?, ?, ?, ?, ?, ?, ?)");
 	
-		$stmt->execute([$_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type'], $randomNum]);
+		$stmt->execute([$_SESSION['userId'], $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type'], $randomNum]);
 		if($stmt->rowCount() ==1 ){
 			header("Location: onboarding-group.php?gid=".$randomNum);
 		}
@@ -61,13 +61,14 @@ if($stmt->rowCount()==1){
 	}elseif($_SESSION['type'] == 0){
 
     $stmt = $pdo->prepare("INSERT INTO `trips` 
-	(`tripName`, `destination`, `fromDate`, `toDate`, `type`) 
-	VALUES (?, ?, ?, ?, ?)");
+	(`userId`, `tripName`, `destination`, `fromDate`, `toDate`, `type`) 
+	VALUES (?, ?, ?, ?, ?, ?)");
 
-    $stmt->execute([$_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type']]);
+    $stmt->execute([$_SESSION['userId'], $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type']]);
 
-
-	// 
+	if($stmt->rowCount() ==1 ){
+		header("Location: welcome.php");
+	}
 
 
 }else{
