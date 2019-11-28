@@ -27,15 +27,14 @@ if(isset($_SESSION['userId'])) {
 
     if($isEdit){
         $stmt = $pdo->prepare("UPDATE `events` SET `name` = '$eventName',
-            `name` = '$name',
             `checkIn` = '$checkIn',
             `address` = '$address',
             `others` = '$others' WHERE `events`.`eventId` = '$eventId'");
         $stmt->execute();
     } else {
         $stmtNew = $pdo->prepare("INSERT INTO `events` 
-            (`eventId`, `name`, `checkIn`, `address`, `others`) 
-            VALUES (NULL, '$eventName', '$checkIn', '$address', '$others');");
+            (`eventId`, `tripId`, `name`, `checkIn`, `address`, `others`) 
+            VALUES (NULL, '$tripId', '$eventName', '$checkIn', '$address', '$others');");
         $stmtNew->execute();
     }
 

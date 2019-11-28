@@ -7,7 +7,7 @@ include("../includes/session.php");
     <?php
         include("../includes/header.php");
     ?>
-    <title>Edit Events</title>
+    <title>Edit Others</title>
 </head>
 <body>
     <?php
@@ -16,41 +16,15 @@ include("../includes/session.php");
     include("../includes/db-config.php");
 
         $isEdit = false;
-        $categoryId = 3; // 3 for events
+        $categoryId = 4; // 4 for others
         $tripId = $_GET['tripId'];
         
-        if(isset($_GET['eventId']) && isset($_GET['tripId'])) {
-            $eventId = $_GET["eventId"];
+        if(isset($_GET['otherId']) && isset($_GET['tripId'])) {
+            $otherId = $_GET["otherId"];
             
-            $stmt = $pdo->prepare("SELECT * FROM `events` WHERE `eventId` = '$eventId' AND `tripId` = '$tripId'");
+            $stmt = $pdo->prepare("SELECT * FROM `events` WHERE `otherId` = '$otherId' AND `tripId` = '$tripId'");
             $stmt->execute();
             $row = $stmt->fetch();
-
-
-            // TEST MULTIPLE SELECT QUERIES
-            // $stmtTest = $pdo->prepare("SELECT `accommodations`.`name`, `events`.`name`
-            // FROM `accommodations`, `events`
-            // WHERE `accommodations`.`tripId` = 1 AND `events`.`tripId` = 1
-            // GROUP BY 1");
-
-            // $stmtTest = $pdo->prepare("SELECT `accommodations`.`name`, `events`.`name`
-            // FROM `accommodations`
-            // INNER JOIN `events` USING (`tripId`);");
-
-            // $stmtTest->execute();
-            // // $rowTest = $stmtTest->fetch();
-            // // var_dump($rowTest);
-            
-            // echo('<ul>');
-            // while($rowTest = $stmtTest->fetch()) {
-            //     echo('<li>');
-            //     // echo($rowTest['name']);
-            //     echo($rowTest[0]);
-            //     echo($rowTest[1]);
-            //     echo('</li>');
-            // }
-            // echo('</ul>');
-            
 
             $count = $stmt->rowCount();
             // Check if there is any exiting record with above mentioned trip and user IDs
@@ -59,17 +33,18 @@ include("../includes/session.php");
             }
         }
         
+        
     ?>
     <header>
         <!-- TOP NAVIGATION -->
     </header>
     <main>
         <div class="container">
-            <h1>Events
+            <h1>Others
             <?php 
                 if($isEdit){
-                    $deleteUrl = '../edit-trip/process-delete-event.php?eventId='.$eventId;
-                    $backUrl = '../edit-trip/edit-events.php?eventId='.$eventId.'&tripId='.$tripId; // REPLACE THIS WITH DASHBOARD EXPANDED VIEW URL
+                    $deleteUrl = '../edit-trip/process-delete-other.php?otherId='.$otherId;
+                    $backUrl = '../edit-trip/edit-others.php?otherId='.$otherId.'&tripId='.$tripId; // REPLACE THIS WITH DASHBOARD EXPANDED VIEW URL
             ?>
                 <a class="delete" href="../components/promptDelete.php?yes=<?php echo($deleteUrl);?>&no=<?php echo($backUrl);?>">Delete</a>
             <?php 
@@ -78,20 +53,16 @@ include("../includes/session.php");
             </h1>
             <section>
                 <div class="form-container">
-                    <form action="process-events.php" method="POST">
-                        <input type="hidden" name="eventId" value="<?php if($isEdit){ echo($eventId);} ?>">
+                    <form action="process-other.php" method="POST">
+                        <input type="hidden" name="otherId" value="<?php if($isEdit){ echo($otherId);} ?>">
                         <input type="hidden" name="tripId" value="<?php echo($tripId); ?>">
                         <div class="form-input">
-                            <label for="eventName">Event Name</label>
-                            <input id="eventName" name="eventName" type="text" placeholder="Event Name" value="<?php if($isEdit){ echo($row['name']); } ?>">
+                            <label for="otherName">Name</label>
+                            <input id="otherName" name="otherName" type="text" placeholder="Name" value="<?php if($isEdit){ echo($row['name']); } ?>">
                         </div>
                         <div class="form-input half">
                             <label for="checkIn">Date &amp; Time</label>
                             <input id="checkIn" name="checkIn" type="text" placeholder="Date" value="<?php if($isEdit){ echo($row['checkIn']); } ?>">
-                        </div>
-                        <div class="form-input">
-                            <label for="address">Address</label>
-                            <textarea id="address" name="address" type="text" placeholder="Address"><?php if($isEdit){ echo($row['address']); } ?></textarea>
                         </div>
                         <div class="form-input">
                             <label for="others">Others</label>
