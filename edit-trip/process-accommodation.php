@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("../includes/session.php");
 
 if(isset($_SESSION['userId'])) {
@@ -16,8 +16,7 @@ if(isset($_SESSION['userId'])) {
 
     $isEdit = false;
 
-    if(isset($_GET['accoId'])) {
-        $accoId = $_GET["accoId"]; 
+    if(isset($_POST['accoId']) && isset($_POST['tripId'])) {
 
         $stmt = $pdo->prepare("SELECT * FROM `accommodations` WHERE `accoId` = '$accoId' AND `tripId` = '$tripId'");
         $stmt->execute();

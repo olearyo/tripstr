@@ -7,7 +7,7 @@ include("../includes/session.php");
 
         include("../includes/db-config.php");
 
-        $stmt = $pdo->prepare("DELETE FROM `accommodations` WHERE `accommodations`.`transId` = '$transId'");
+        $stmt = $pdo->prepare("DELETE FROM `transportation` WHERE `transportation`.`transId` = '$transId'");
         $stmt->execute();
 
         // header("Location: edit-accommodation.php?transId=$transId");

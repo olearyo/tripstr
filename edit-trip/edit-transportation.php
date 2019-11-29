@@ -17,11 +17,11 @@ include("../includes/session.php");
 
         $isEdit = false;
         $categoryId = 2;
-
+        $tripId = $_GET['tripId'];
         
         if(isset($_GET['transId']) && isset($_GET['tripId'])) {
             $transId = $_GET["transId"]; 
-            $tripId = $_GET['tripId'];
+            
 
             $stmt = $pdo->prepare("SELECT * FROM `transportation` WHERE `transId` = '$transId' AND `tripId` = '$tripId'");
             $stmt->execute();

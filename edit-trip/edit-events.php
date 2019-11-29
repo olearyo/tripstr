@@ -7,7 +7,7 @@ include("../includes/session.php");
     <?php
         include("../includes/header.php");
     ?>
-    <title>Edit Accommodation</title>
+    <title>Edit Events</title>
 </head>
 <body>
     <?php
@@ -16,19 +16,41 @@ include("../includes/session.php");
     include("../includes/db-config.php");
 
         $isEdit = false;
-
-        
-        $category = 1;
-        $categoryId = 1;
+        $categoryId = 3; // 3 for events
         $tripId = $_GET['tripId'];
-
-
-        if(isset($_GET['accoId']) && isset($_GET['tripId'])) {
-            $accoId = $_GET["accoId"];
+        
+        if(isset($_GET['eventId']) && isset($_GET['tripId'])) {
+            $eventId = $_GET["eventId"];
             
-            $stmt = $pdo->prepare("SELECT * FROM `accommodations` WHERE `accoId` = '$accoId' AND `tripId` = '$tripId'");
+            $stmt = $pdo->prepare("SELECT * FROM `events` WHERE `eventId` = '$eventId' AND `tripId` = '$tripId'");
             $stmt->execute();
             $row = $stmt->fetch();
+
+
+            // TEST MULTIPLE SELECT QUERIES
+            // $stmtTest = $pdo->prepare("SELECT `accommodations`.`name`, `events`.`name`
+            // FROM `accommodations`, `events`
+            // WHERE `accommodations`.`tripId` = 1 AND `events`.`tripId` = 1
+            // GROUP BY 1");
+
+            // $stmtTest = $pdo->prepare("SELECT `accommodations`.`name`, `events`.`name`
+            // FROM `accommodations`
+            // INNER JOIN `events` USING (`tripId`);");
+
+            // $stmtTest->execute();
+            // // $rowTest = $stmtTest->fetch();
+            // // var_dump($rowTest);
+            
+            // echo('<ul>');
+            // while($rowTest = $stmtTest->fetch()) {
+            //     echo('<li>');
+            //     // echo($rowTest['name']);
+            //     echo($rowTest[0]);
+            //     echo($rowTest[1]);
+            //     echo('</li>');
+            // }
+            // echo('</ul>');
+            
 
             $count = $stmt->rowCount();
             // Check if there is any exiting record with above mentioned trip and user IDs
@@ -36,17 +58,18 @@ include("../includes/session.php");
                 $isEdit = true;
             }
         }
+        
     ?>
     <header>
         <!-- TOP NAVIGATION -->
     </header>
     <main>
         <div class="container">
-            <h1>Accommodation
+            <h1>Events
             <?php 
                 if($isEdit){
-                    $deleteUrl = '../edit-trip/process-delete-accommodation.php?accoId='.$accoId;
-                    $backUrl = '../edit-trip/edit-accommodation.php?accoId='.$accoId;
+                    $deleteUrl = '../edit-trip/process-delete-event.php?eventId='.$eventId;
+                    $backUrl = '../edit-trip/edit-events.php?eventId='.$eventId.'&tripId='.$tripId; // REPLACE THIS WITH DASHBOARD EXPANDED VIEW URL
             ?>
                 <a class="delete" href="../components/promptDelete.php?yes=<?php echo($deleteUrl);?>&no=<?php echo($backUrl);?>">Delete</a>
             <?php 
@@ -55,28 +78,20 @@ include("../includes/session.php");
             </h1>
             <section>
                 <div class="form-container">
-                    <form action="process-accommodation.php" method="POST">
-                        <input type="hidden" name="accoId" value="<?php if($isEdit){ echo($accoId);} ?>">
+                    <form action="process-events.php" method="POST">
+                        <input type="hidden" name="eventId" value="<?php if($isEdit){ echo($eventId);} ?>">
                         <input type="hidden" name="tripId" value="<?php echo($tripId); ?>">
                         <div class="form-input">
-                            <label for="accoName">Accommodation Name</label>
-                            <input id="accoName" name="accoName" type="text" placeholder="Accommodation e.g. Hotel Name" value="<?php if($isEdit){ echo($row['name']); } ?>">
+                            <label for="eventName">Event Name</label>
+                            <input id="eventName" name="eventName" type="text" placeholder="Event Name" value="<?php if($isEdit){ echo($row['name']); } ?>">
                         </div>
                         <div class="form-input half">
-                            <label for="checkIn">Check In</label>
-                            <input id="checkIn" name="checkIn" type="text" placeholder="Check in" value="<?php if($isEdit){ echo($row['checkIn']); } ?>">
-                        </div>
-                        <div class="form-input half">
-                            <label for="checkOut">Check Out</label>
-                            <input id="checkOut" name="checkOut" type="text" placeholder="Check out" value="<?php if($isEdit){ echo($row['checkOut']); } ?>">
+                            <label for="checkIn">Date &amp; Time</label>
+                            <input id="checkIn" name="checkIn" type="text" placeholder="Date" value="<?php if($isEdit){ echo($row['checkIn']); } ?>">
                         </div>
                         <div class="form-input">
                             <label for="address">Address</label>
                             <textarea id="address" name="address" type="text" placeholder="Address"><?php if($isEdit){ echo($row['address']); } ?></textarea>
-                        </div>
-                        <div class="form-input half">
-                            <label for="bookingId">Booking ID</label>
-                            <input id="bookingId" name="bookingId" type="text" placeholder="Booking ID" value="<?php if($isEdit){ echo($row['bookingId']); } ?>">
                         </div>
                         <div class="form-input">
                             <label for="others">Others</label>
@@ -96,7 +111,6 @@ include("../includes/session.php");
                         echo("<h1>Files</h1>");
                         $stmtFile = $pdo->prepare("SELECT * FROM `files` WHERE `tripId` = '$tripId' AND `categoryId` = '$categoryId' ");
                         $stmtFile->execute();
-                    
                 ?>
                 <ul>
 
@@ -119,7 +133,7 @@ include("../includes/session.php");
                     
                 ?>
                 </ul>
-                <a href="upload-file.php?tripId=<?php echo($tripId) ?>&categoryId=<?php echo($categoryId) ?>" class="button secondary">Upload new file</a>
+                <a href="upload-file.php?tripId=<?php echo($tripId); ?>&categoryId=<?php echo($categoryId) ?>" class="button secondary">Upload new file</a>
                 <?php 
                     } // above if condition
                 ?>
@@ -141,7 +155,6 @@ include("../includes/session.php");
         let checkIn = document.querySelector('#checkIn')
         let dateTime = document.querySelector('#dateTime')
         checkIn.addEventListener('focus', showHideDate, false)
-        checkOut.addEventListener('focus', showHideDate, false)
         setDateUI()
     </script>
     <?php 

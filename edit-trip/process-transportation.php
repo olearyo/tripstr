@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("../includes/session.php");
 
 if(isset($_SESSION['userId'])) {
@@ -17,8 +17,7 @@ if(isset($_SESSION['userId'])) {
 
     $isEdit = false;
 
-    if(isset($_GET['transId'])) {
-        $transId = $_GET["transId"]; 
+    if(isset($_POST['transId']) && isset($_POST['tripId'])) {
 
         $stmt = $pdo->prepare("SELECT * FROM `transportation` WHERE `transId` = '$transId' AND `tripId` = '$tripId'");
         $stmt->execute();
@@ -32,10 +31,9 @@ if(isset($_SESSION['userId'])) {
     if($isEdit){
         $stmt = $pdo->prepare("UPDATE `transportation` SET `name` = '$transName',
             `departure` = '$departure',
-            `arrival` = '$checkOut',
+            `arrival` = '$arrival',
             `checkIn` = '$checkIn',
             `checkOut` = '$checkOut',
-            `address` = '$address',
             `bookingId` = '$bookingId',
             `others` = '$others' WHERE `transportation`.`transId` = '$transId'");
         $stmt->execute();
