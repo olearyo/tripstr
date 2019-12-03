@@ -1,7 +1,8 @@
-<?php
+<?php session_start();
 
-$userId = 1;
-// $tripId = $_GET['tripId'];
+$tripId = $_GET['tripId'];
+// $tripId = 2;
+// $userId = 2;
 
 include("../includes/db-config.php");
 
@@ -13,6 +14,7 @@ $tripsTable-> execute();
 
 //////////////////////// SHOW TRIP CONTENTS ////////////////////////////////////
 
+if(isset($_SESSION['userId'])) {
 	while($tripsRow = $tripsTable->fetch()) {
 
         echo('<div>');
@@ -89,5 +91,9 @@ $tripsTable-> execute();
 
 <?php
 		echo('</div>');
-	} 
+    } 
+}
+else{
+    echo("Please login to continue.");
+}
 ?>

@@ -1,7 +1,8 @@
 <?php
 
 $tripId = $_GET['tripId'];
-$userId = NULL;
+// $tripId = $_GET['tripId'];
+// $userId = 2;
 
 include("../includes/db-config.php");
 
@@ -29,7 +30,12 @@ $othersIdTable -> execute();
 echo("<a href=show-trips-dashboard.php> Back to Dashboard </a>");
 echo("<br><br>");
 
+// var_dump($othersIdTable->fetch());
+
+
+if(isset($_SESSION['userId'])) {
 while($tripsRow = $tripsTable->fetch()) {
+    echo($tripsRow["tripName"]);
     while($transptRow = $transptIdTable->fetch()){
         while($accomRow = $accomIdTable ->fetch()){
             while($eventsRow = $eventsIdTable->fetch()){
@@ -100,7 +106,7 @@ while($tripsRow = $tripsTable->fetch()) {
                     echo("Others: ".$eventsIdTable["others"]);
                     echo("<br>");
 
-                    echo("<a href=../edit-trip/edit-transportation.php?transId=$eventsRow[eventId]&tripId=$tripId>Edit Event</a>");
+                    echo("<a href=../edit-trip/edit-events.php?eventId=$eventsRow[eventId]&tripId=$tripId>Edit Event</a>");
                     echo("<br>");
 ?>
 
@@ -128,5 +134,9 @@ while($tripsRow = $tripsTable->fetch()) {
             }
         }
     }
+}
+}
+else{
+    echo("Please login to continue.");
 }
 ?>
