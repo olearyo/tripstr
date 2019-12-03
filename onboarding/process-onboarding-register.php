@@ -1,4 +1,21 @@
 <?php session_start();
+//process-login.php
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php
+    include("../includes/header.php");
+    ?>
+    <title>Register</title>
+</head>
+<body>
+
+    <header>
+        <!-- TOP NAVIGATION -->
+    </header>
+<?php
+
 
 $fullName = $_POST['fullName'];
 $email = $_POST['email'];
@@ -18,6 +35,7 @@ if ($row){
     $_SESSION['userId'] = $row['userId'];
 	$_SESSION['fullName'] = $row['fullName'];
 	$_SESSION['status'] = $row['status'];
+	$userNewID= $pdo->lastInsertId();
     
     // $stmt = $pdo->prepare("INSERT INTO `trips` 
 	// (`tripName`, `destination`, `fromDate`, `toDate`, `type`) 
@@ -25,7 +43,7 @@ if ($row){
 
 	// $stmt->execute([$_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type']]);
 	
-	if($_SESSION['type'] == 1){ 
+	if($_SESSION['type'] == 1){  //GROUP
 		$randomNum = rand(1000,5000); 
 		$stmt = $pdo->prepare("SELECT * FROM `trips` 
 			WHERE `uniqueId` = ?");
@@ -35,14 +53,15 @@ if ($row){
 			$randomNum = rand(1000,5000); 
 		}
 	
-		// echo($randomNum);
+
 	
 		$stmt = $pdo->prepare("INSERT INTO `trips` 
 		(`userId`, `tripName`, `destination`, `fromDate`, `toDate`, `type`, `uniqueId`) 
 		VALUES (?, ?, ?, ?, ?, ?, ?)");
 	
-		$stmt->execute([$_SESSION['userId'], $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type'], $randomNum]);
+		$stmt->execute([$userNewID, $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type'], $randomNum]);
 		
+
 		if($stmt->rowCount() ==1 ){
 			header("Location: onboarding-group.php?gid=".$randomNum);
 		}
@@ -53,13 +72,14 @@ if ($row){
 	(`userId`, `tripName`, `destination`, `fromDate`, `toDate`, `type`) 
 	VALUES (?, ?, ?, ?, ?, ?)");
 
-    $stmt->execute([$_SESSION['userId'], $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type']]);
+    $stmt->execute([$userNewID, $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type']]);
 
 	}
 }else{
 	echo "something went wrong, please try again.";
 }
 
+		
 
 
 ?>
