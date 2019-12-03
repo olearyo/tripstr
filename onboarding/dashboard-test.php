@@ -1,41 +1,35 @@
-<?php
+<?php session_start();
 
-include("../includes/session.php");
-include("../includes/db-config.php");
+include("../includes/logo.php");
+include("../includes/header.php");
 
-//////////////////////// SHOW TRIP CONTENTS ////////////////////////////////////
 
-if(isset($_SESSION['userId'])) {
-    $userId = $_SESSION['userId'];
-
+$userId = $_SESSION['userId'];
+// $userId = 1;
+// $tripId = $_GET['tripId'];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php
-
-        include("../includes/header.php");
-    ?>
-
     <title>Dashboard</title>
 </head>
 <body class="grey">
 
-    <p><a href="../onboarding/logout.php">Logout</a></p>
     <main>
         <div class="container">
             <h1>Dashboard</h1>
-
 <?php
+include("../includes/db-config.php");
 
-    $usr_grTable = $pdo->prepare("SELECT * FROM `users` WHERE `userId` = '$userId';");
-    $usr_grTable -> execute();
+$usr_grTable = $pdo->prepare("SELECT * FROM `users` WHERE `userId` = '$userId';");
+$usr_grTable -> execute();
 
-    $tripsTable = $pdo->prepare("SELECT * FROM `trips`;");
-    $tripsTable-> execute();
+$tripsTable = $pdo->prepare("SELECT * FROM `trips` WHERE `userId` = '$userId';");
+$tripsTable-> execute();
 
-    while($tripsRow = $tripsTable->fetch()) {?>
+//////////////////////// SHOW TRIP CONTENTS ////////////////////////////////////
+
+	while($tripsRow = $tripsTable->fetch()) {?>
 
 
 
@@ -88,17 +82,23 @@ if(isset($_SESSION['userId'])) {
         $usr_grTable = $usr_grTable ->fetch();
 
 ?>
-                <p>Group members: <?php echo ($usr_grTable['groups']); ?></p>
-                <p><a href='../group/group-home.php'>View Members</a></p>
+                    <p>Group members: <?php echo ($usr_grTable['groups']); ?></p>
+                    <p><a href='../group/group-home.php'>View Members</a></p>
 
-                <div class="continue">
-                <a href="view-trip-details.php?tripId=<?php echo($tripsRow["tripId"]); ?>"><button class="button">GO TO TRIP</button></a>
-                <div>
-            </div>
+                    <div class="continue">
+                    <a href="view-trip-details.php?tripId=<?php echo($tripsRow["tripId"]); ?>"><button class="button">GO TO TRIP</button></a>
+                    <div>
+                </div>
         </div>
     </div>
 </html>
 <?php
+
+
+
+
+
+		
         // show the user's name
 		// $stmt2 = $pdo->prepare("SELECT `fullName` FROM `users` WHERE `userId` = :tripId;");
 		// $stmt2 -> bindParam(':tripId', $row["tripId"]);
@@ -109,11 +109,15 @@ if(isset($_SESSION['userId'])) {
 		// 	echo($row2['fullName']);
 		// 	echo(" | ");
         // }
-		echo('</div>');
-    }//end of while loop
 
-} //end of if
-else {
-    echo("Please login to continue.");
-}
+		
 ?>
+
+
+
+
+<?php
+		echo('</div>');
+	} 
+?>
+<p><a href="../onboarding/logout.php">Logout</a></p>
