@@ -1,9 +1,10 @@
-<?php session_start();
+<?php
 
-$tripId = $_GET['tripId'];
+// $tripId = $_GET['tripId'];
 // $tripId = 2;
 // $userId = 2;
 
+include("../includes/sessions.php");
 include("../includes/db-config.php");
 
 $usr_grTable = $pdo->prepare("SELECT * FROM `users` WHERE `userId` = '$userId';");
