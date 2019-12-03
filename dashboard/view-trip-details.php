@@ -1,39 +1,37 @@
 <?php
 
 $tripId = $_GET['tripId'];
-// $tripId = $_GET['tripId'];
-// $userId = 2;
 
+include("../includes/session.php");
 include("../includes/db-config.php");
 
-$tripsTable = $pdo->prepare("SELECT * FROM `trips` WHERE `tripId` = '$tripId';");
-$tripsTable -> execute();
+if(isset($_SESSION['userId'])) {
+    $userId = $_SESSION['userId'];
+    $tripsTable = $pdo->prepare("SELECT * FROM `trips` WHERE `tripId` = '$tripId';");
+    $tripsTable -> execute();
 
-$usr_grTable = $pdo->prepare("SELECT * FROM `users-groups`;");
-$usr_grTable -> execute();
+    $usr_grTable = $pdo->prepare("SELECT * FROM `users-groups`;");
+    $usr_grTable -> execute();
 
-$accomIdTable = $pdo->prepare("SELECT * FROM `accommodations` WHERE `tripId` = $tripId;");
-$accomIdTable -> execute();
+    $accomIdTable = $pdo->prepare("SELECT * FROM `accommodations` WHERE `tripId` = $tripId;");
+    $accomIdTable -> execute();
 
-$accomDetailsTable = $pdo->prepare("SELECT * FROM `accommodations` WHERE `tripId` = $tripId;");
-$accomDetailsTable -> execute();
+    $accomDetailsTable = $pdo->prepare("SELECT * FROM `accommodations` WHERE `tripId` = $tripId;");
+    $accomDetailsTable -> execute();
 
-$transptIdTable = $pdo->prepare("SELECT * FROM `transportation` WHERE `tripId` = $tripId;");
-$transptIdTable -> execute();
+    $transptIdTable = $pdo->prepare("SELECT * FROM `transportation` WHERE `tripId` = $tripId;");
+    $transptIdTable -> execute();
 
-$eventsIdTable = $pdo->prepare("SELECT * FROM `events` WHERE `tripId` = $tripId;");
-$eventsIdTable -> execute();
+    $eventsIdTable = $pdo->prepare("SELECT * FROM `events` WHERE `tripId` = $tripId;");
+    $eventsIdTable -> execute();
 
-$othersIdTable = $pdo->prepare("SELECT * FROM `others` WHERE `tripId` = $tripId;");
-$othersIdTable -> execute();
+    $othersIdTable = $pdo->prepare("SELECT * FROM `others` WHERE `tripId` = $tripId;");
+    $othersIdTable -> execute();
 
-echo("<a href=show-trips-dashboard.php> Back to Dashboard </a>");
-echo("<br><br>");
+    echo("<a href=show-trips-dashboard.php> Back to Dashboard </a>");
+    echo("<br><br>");
 
 // var_dump($othersIdTable->fetch());
-
-
-if(isset($_SESSION['userId'])) {
 while($tripsRow = $tripsTable->fetch()) {
     echo($tripsRow["tripName"]);
     while($transptRow = $transptIdTable->fetch()){

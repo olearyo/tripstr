@@ -4,8 +4,13 @@
 // $tripId = 2;
 // $userId = 2;
 
-include("../includes/sessions.php");
+include("../includes/session.php");
 include("../includes/db-config.php");
+
+//////////////////////// SHOW TRIP CONTENTS ////////////////////////////////////
+
+if(isset($_SESSION['userId'])) {
+$userId = $_SESSION['userId'];
 
 $usr_grTable = $pdo->prepare("SELECT * FROM `users` WHERE `userId` = '$userId';");
 $usr_grTable -> execute();
@@ -13,9 +18,6 @@ $usr_grTable -> execute();
 $tripsTable = $pdo->prepare("SELECT * FROM `trips`;");
 $tripsTable-> execute();
 
-//////////////////////// SHOW TRIP CONTENTS ////////////////////////////////////
-
-if(isset($_SESSION['userId'])) {
 	while($tripsRow = $tripsTable->fetch()) {
 
         echo('<div>');
