@@ -99,7 +99,7 @@ if(isset($_SESSION['userId'])) {
     </div>
 </html>
 <?php
-        // show the user's name
+        // show the user's name                                                         view-trip-details.php?tripId=$tripsRow[tripId]
 		// $stmt2 = $pdo->prepare("SELECT `fullName` FROM `users` WHERE `userId` = :tripId;");
 		// $stmt2 -> bindParam(':tripId', $row["tripId"]);
 		// $stmt2 -> execute();
