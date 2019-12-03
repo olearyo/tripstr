@@ -1,9 +1,9 @@
 <?php session_start();
 
 // ADD TO RECIEVE TRIP ID FOR THE USER
-$tripId = 2;
+$tripId = $_POST['tripId'];
 //$_GET['tripId'];
-$userId = 1;
+$userId = $_POST['userId'];
 
 include("../includes/db-config.php");
 
@@ -45,7 +45,7 @@ while($row2 = $userdata->fetch()) {
 // make so only group members with a type of 1 show (use if statement?)
   echo("<br>");
 	echo($row2["fullName"]);
-    echo($row2["userId"]);
+  echo($row2["userId"]);
 ?>
 
 <a href="group-delete.php?userId=<?php echo($row2["userId"]); ?>">Delete</a>

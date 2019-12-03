@@ -2,8 +2,8 @@
 //process-delete.php
 
 
-$userId = $_POST["userId"];
-$tripId = $_POST["tripId"];
+$userId = $_GET["userId"];
+$tripId = $_GET["tripId"];
 
 //delete a record from the database
 include("../includes/db-config.php");

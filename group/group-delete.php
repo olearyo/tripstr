@@ -3,8 +3,8 @@
 //$userId = $_GET["userId"];
 include("../includes/db-config.php");
 
-$tripId = 2;
-$userId = 1;
+$tripId = $_GET['tripId'];
+$userId = $_GET['userId'];
 
 ?>
 
