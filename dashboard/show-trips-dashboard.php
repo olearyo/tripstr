@@ -89,7 +89,8 @@ if(isset($_SESSION['userId'])) {
 
 ?>
                 <p>Group members: <?php echo ($usr_grTable['groups']); ?></p>
-                <p><a href='../group/group-home.php'>View Members</a></p>
+                
+                <p><a href='../group/group-home.php?userId=$usr_grTable[userId]&tripId=$tripId>View Members</a></p>
 
                 <div class="continue">
                 <a href="view-trip-details.php?tripId=<?php echo($tripsRow["tripId"]); ?>"><button class="button">GO TO TRIP</button></a>

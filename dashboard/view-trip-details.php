@@ -28,8 +28,8 @@ if(isset($_SESSION['userId'])) {
     $othersIdTable = $pdo->prepare("SELECT * FROM `others` WHERE `tripId` = $tripId;");
     $othersIdTable -> execute();
 
-    echo("<a href=show-trips-dashboard.php> Back to Dashboard </a>");
-    echo("<br><br>");
+    // echo("<a href=show-trips-dashboard.php> Back to Dashboard </a>");
+    // echo("<br><br>");
 
     while($tripsRow = $tripsTable->fetch()) {
 
@@ -158,7 +158,7 @@ if(isset($_SESSION['userId'])) {
             while($usr_grRow = $usr_grTable ->fetch()){
                 echo("<br><br>");
                 echo("Group members:  ");
-                echo("<a href='../group/group-home.php?userId=$usr_grRow[userId]&tripId=$tripId>View Members</a>");
+                 
                 echo("<br><br>");
             }
         } else {

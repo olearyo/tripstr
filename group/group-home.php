@@ -1,4 +1,5 @@
 <?php
+
 include("../includes/session.php");
 
 // ADD TO RECIEVE TRIP ID FOR THE USER
@@ -9,9 +10,13 @@ $userId = $_GET['userId'];
 include("../includes/db-config.php");
 
 //Recieving information for users with the same TripID.
-$userTable = $pdo->prepare("SELECT count(userId) FROM `users-groups` GROUP BY `tripId` ");
-$userTable->execute();
-$row = $userTable->fetch();
+
+$usr_grTable = $pdo->prepare("SELECT COUNT(userId) as 'groups' FROM `users-groups` WHERE `tripId` = '$tripsRow[tripId]' "); 
+$usr_grTable -> execute(); 
+$usr_grTable = $usr_grTable ->fetch();
+// $userTable = $pdo->prepare("SELECT count(userId) FROM `users-groups` GROUP BY `tripId` ");
+// $userTable->execute();
+// $row = $userTable->fetch();
 
 //Recivieving info for the users fullname.
 
