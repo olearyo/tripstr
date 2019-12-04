@@ -1,9 +1,9 @@
 <?php session_start();
 
 // ADD TO RECIEVE TRIP ID FOR THE USER
-$tripId = $_POST['tripId'];
+$tripId = $_GET['tripId'];
 //$_GET['tripId'];
-$userId = $_POST['userId'];
+$userId = $_GET['userId'];
 
 include("../includes/db-config.php");
 
@@ -22,10 +22,19 @@ $userdata->execute();
 
 $row2 = $userdata->fetch();
 
-
-//	if($_SESSION['type'] == 1){} USE FOR WHEN USER HAS A GROUP
 ?>
+<html>
 
+<head>
+<title> Groups </title>
+<link rel="stylesheet" href="../css/base-css.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+  <div class="box">
 <h1> Groups <h1>
 
 <?php
@@ -45,18 +54,21 @@ while($row2 = $userdata->fetch()) {
 // make so only group members with a type of 1 show (use if statement?)
   echo("<br>");
 	echo($row2["fullName"]);
-  echo($row2["userId"]);
 ?>
 
-<a href="group-delete.php?userId=<?php echo($row2["userId"]); ?>">Delete</a>
+<a class="link" href="group-delete.php?userId=<?php echo($row2["userId"]); ?>">Delete</a>
 <?php
 }
  ?>
 
  <br>
  <br>
-
- <a href="group-add.php"> ADD MEMBER </a>
+<button class="button" onclick="window.location.href='group-add.php'">Add member</button>
+ <!-- <a class="button" href="group-add.php"> ADD MEMBER </a> -->
+</div>
+</div>
+</body>
+</html>
 
 
 
