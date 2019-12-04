@@ -158,7 +158,7 @@ if(isset($_SESSION['userId'])) {
             while($usr_grRow = $usr_grTable ->fetch()){
                 echo("<br><br>");
                 echo("Group members:  ");
-                echo("<a href='../group/group-home.php'> View Members</a>");
+                echo("<a href='../group/group-home.php?userId=$usr_grRow[userId]&tripId=$tripId>View Members</a>");
                 echo("<br><br>");
             }
         } else {
