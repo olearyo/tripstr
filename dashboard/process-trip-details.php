@@ -27,9 +27,9 @@ if(isset($_SESSION['userId'])) {
   
     $trips = $tripsTable->fetchAll(PDO::FETCH_ASSOC);
     $trips['accommodations'] = $accomIdTable->fetchAll(PDO::FETCH_ASSOC);
-    $trips['$transportation'] = $transptIdTable->fetchAll(PDO::FETCH_ASSOC);
-    $trips['$events'] = $eventsIdTable->fetchAll(PDO::FETCH_ASSOC);
-    $trips['$others'] = $othersIdTable->fetchAll(PDO::FETCH_ASSOC);
+    $trips['transportation'] = $transptIdTable->fetchAll(PDO::FETCH_ASSOC);
+    $trips['events'] = $eventsIdTable->fetchAll(PDO::FETCH_ASSOC);
+    $trips['others'] = $othersIdTable->fetchAll(PDO::FETCH_ASSOC);
 
     echo(json_encode($trips));
 } else {
@@ -38,3 +38,4 @@ if(isset($_SESSION['userId'])) {
     }');
 }
 ?>
+
