@@ -13,12 +13,25 @@ body {
 	top: 0;
 	width: 100%;
 	height:10vh;
+	height:12vh;
 	display: block;
 	transition: top 0.3s;
 	text-align:center;
 
   }
   
+
+.home-container{
+	text-align:center;
+	width:60%;
+
+}
+
+#logo-home{
+	max-width:200px;
+	margin: auto;
+}
+
 #logo{
 	  max-width:150px;
   }
@@ -35,6 +48,25 @@ body {
 	min-width: 400px;
 	margin: 0 auto;
 }
+
+.title {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	margin-bottom:5%;
+  }
+  
+  .inline {
+	display: inline-block;
+	font-size: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+  }
+  
+  .back{
+  float:left;
+  }
 
 /* RESET DEFAULT BROWSER PROPERTIES */
 h1,
@@ -58,6 +90,12 @@ h6 {
 	box-shadow: 1px 1px 30px #8ea2e8;
 	border-radius: 20px;
 	text-align: center;
+	/* box-shadow: 1px 13px 30px #8ea2e8; */
+	box-shadow: 0px 13px 25px -7px rgba(142, 162, 232, 1);
+
+	border-radius: 20px;
+	text-align: center;
+	margin:auto;
 }
 
 img.logo{
@@ -66,6 +104,10 @@ img.logo{
 
 }
 /* LINKS */
+
+.material-icons{
+	color: #757575;
+}
 
 a:link {
 	color: #4227f2;
@@ -77,11 +119,42 @@ a:visited {
 
 a:hover {
 	color: #575ff2;
+/* a:visited {
+	color: #696b8c;
+} */
+
+a:hover, .material-icons:hover{
+	color: #575ff2;
 }
 
 
 /* DASHBOARD */
 
+.light-blue{
+	color: #5637FF;
+}
+
+.dark-blue{
+	color: #272857;
+}
+
+/* DASHBOARD */
+
+.fas, .fa-plane{
+	max-width:20px;
+	color: #D3D2D2;
+}
+
+.profile{
+	max-width: 120px;
+	margin-bottom: 5%;;
+}
+
+.title{
+	text-align:center;
+	margin-left:5%;
+	margin-right:5%;
+}
 .grey{
 	background-color: #FAFAFA;
 }
@@ -91,6 +164,8 @@ a:hover {
 	min-height: 400px;
 	min-width: 300px;
 	margin-top: 20%;
+	margin-top: 10%;
+	margin-bottom: 20%;
 	padding: 40px;
 	border-radius: 20px;
 	background-color: #ffffff;
@@ -145,6 +220,7 @@ textarea {
 .button {
 	width: 100%;
 	height: 35px;
+	font-weight: 600;
 	border: 1px solid #5637ff;
 	border-radius: 4px;
 	cursor: pointer;
@@ -156,6 +232,11 @@ textarea {
 	padding: 10px;
 	font-size: 0.8rem;
 }
+	margin-top: 20px;
+}
+
+
+
 .button.secondary {
 	background-color: #ffffff;
 	border: 1px solid #dddddd;
@@ -171,6 +252,94 @@ textarea {
 
 .half{
   width:30%;
+}
+
+h1 .delete {
+	float: right;
+	font-size: 1rem;
+}
+	font-weight: 600;
+	border-radius: 4px;
+  	border: 2px solid #5637ff;
+  	color: #5637ff !important;
+}
+
+.button.blueborder:hover {
+	background-color: #5637ff;
+	border-radius: 4px;
+  	border: 2px solid #5637ff;
+  	color: #ffffff !important;
+}
+
+.logout{
+	background-color: gainsboro;
+	font-weight: 600;
+	border-radius: 4px;
+	border: 1px solid gainsboro;
+	width: 30%;
+	color: #333333;
+}
+
+.logout:hover{
+	background-color: #333333;
+	font-weight: 600;
+	border-radius: 4px;
+	width: 30%;
+
+/* =========== POPUP STYLE */
+.prompt-container {
+	display: block;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	background-color: #ffffff;
+	top: 0;
+	left: 0;
+}
+.prompt-content {
+	width: 60%;
+	min-width: 400px;
+	max-width: 800px;
+	background-color: #f8f8f8;
+	padding: 50px;
+	margin: 0 auto;
+	margin-top: 50px;
+	border-radius: 7px;
+}
+.hidePopup {
+	display: none;
+}
+/* =========== POPUP STYLE */
+
+/* ERRORS */
+}
+
+.create{
+	background-color: #ffffff;
+	font-weight: 600;
+	border-radius: 4px;
+  	border: 1px solid #5637ff;
+  	color: #5637ff !important;
+	width: 30%;
+}
+
+.create:hover{
+	background-color: #5637ff;
+	font-weight: 600;
+	border-radius: 4px;
+  	color: white !important;
+	width: 30%;
+}
+
+.half{
+  width:50%;
+}
+
+img.generic{
+	max-width:150px;
+	margin-bottom:10%;
+
+
 }
 
 h1 .delete {
@@ -223,6 +392,7 @@ label {
 }
 
 p,
+p, span,
 input[type='text'],
 input[type='date'] {
 	font-family: 'Open Sans', sans-serif;
