@@ -17,7 +17,22 @@ $userId = $_SESSION['userId'];
 
     <main>
         <div class="container">
-            <h1>Dashboard</h1>
+        <div class="title">
+            <img class="profile" src="../img/passport (5).png">
+            <h2 class="dark-blue"><?php echo($_SESSION['fullName']); ?></h2>
+            <p>Here are your upcoming trips</p>
+
+        </div>   
+        
+        <div class="title">
+        <button class="button logout" onclick="window.location.href = '../onboarding/logout.php';">LOGOUT</button>
+
+        <button class="button create" onclick="window.location.href = '../onboarding/create-trip.php';">ADD TRIP</button>
+
+
+            <!-- <p><a href="../onboarding/logout.php">Logout</a></p> -->
+
+        </div>   
 <?php
 include("../includes/db-config.php");
 
@@ -29,16 +44,14 @@ $tripsTable-> execute();
 
 //////////////////////// SHOW TRIP CONTENTS ////////////////////////////////////
 
-	while($tripsRow = $tripsTable->fetch()) {?>
-
-
-
+    while($tripsRow = $tripsTable->fetch()) {?>
+    
         <div class="box-wide">
         <div class="form-container">
 
 
-            <h2><?php echo($tripsRow["tripName"]); ?></h2>
-            <p><?php echo($tripsRow["fromDate"]); ?> to <?php echo($tripsRow["toDate"]); ?></p>
+            <h1 class="blue"><?php echo($tripsRow["tripName"]); ?></h1>
+            <p><?php echo($tripsRow["fromDate"]); ?>  <i class="fas fa-plane"></i>  <?php echo($tripsRow["toDate"]); ?></p>
                 <div class="form-input half">
                 <label>Destination</label> 
                     <p><?php echo($tripsRow["destination"]);?> </p>
@@ -83,10 +96,10 @@ $tripsTable-> execute();
 
 ?>
                     <p>Group members: <?php echo ($usr_grTable['groups']); ?></p>
-                    <p><a href='../group/group-home.php'>View Members</a></p>
+                    <p><a href="../group/group-home.php?tripId=<?php echo($tripsRow['tripId']); ?>">View Members</a></p>
 
                     <div class="continue">
-                    <a href="view-trip-details.php?tripId=<?php echo($tripsRow["tripId"]); ?>"><button class="button">GO TO TRIP</button></a>
+                    <a href="view-trip-details.php?tripId=<?php echo($tripsRow['tripId']); ?>"><button class="button blueborder">GO TO TRIP</button></a>
                     <div>
                 </div>
         </div>
@@ -118,6 +131,6 @@ $tripsTable-> execute();
 
 <?php
 		echo('</div>');
-	} 
+    } 
+
 ?>
-<p><a href="../onboarding/logout.php">Logout</a></p>
