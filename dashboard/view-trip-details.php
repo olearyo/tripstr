@@ -19,23 +19,43 @@ $tripId = $_GET['tripId'];
 		
 		<section id="tripDetails">
 			<h1 id="tripName"></h1>
+
+		<section id="accoContent">
+			<p class="acco-name"></p>
+			<p class="acco-address"></p>
+			<p class="acco-bookingId"></p>
+			<p class="acco-checkIn"></p>
+			<p class="acco-checkOut"></p>
+			<p class="acco-others"></p>
 		</section>
 
-		<section id="accommodation">
-			<p id="par"></p>
+		<hr>
+
+		<section id="eventsContent">
+			<p id="event-name"></p>
+			<p id="event-address"></p>
+			<p id="event-checkIn"></p>
+			<p id="event-others"></p>
 		</section>
 
-		<section id="events">
-			<p id="eventName"></p>
+		<hr>
+
+		<section id="transContent">
+			<p class="trans-name"></p>
+			<p class="trans-bookingId"></p>
+			<p class="trans-checkIn"></p>
+			<p class="trans-checkOut"></p>
+			<p class="trans-departure"></p> <br>
+			<p class="trans-arrival"></p> <br>
+			<p class="trans-others"></p>
+		</section> 
+
+		<hr>
+
+		<section id="othersContent">
+			<p id="others-name"></p>
 		</section>
 
-		<section id="transCont">
-			
 		</section>
-
-		<section id="others">
-			<p id="othersName"></p>
-		</section>
-
 	</body>
 </html>
