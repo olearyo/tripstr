@@ -17,8 +17,9 @@ $tripId = $_GET['tripId'];
 
 	<body>
 		
-		<section id="tripDetails">
+		<section id="tripHeader">
 			<h1 id="tripName"></h1>
+			<h2 id="tripDest"></h2>
 
 		<section id="accoContent">
 			<p class="acco-name"></p>
@@ -54,7 +55,16 @@ $tripId = $_GET['tripId'];
 
 		<section id="othersContent">
 			<p id="others-name"></p>
+			<p id="others-checkIn"></p>
+			<p id="others-other"></p>
 		</section>
+
+		<hr>
+
+		<section id="filesContent">
+			<p class="file-name"></p>
+			<p class="files-path"></p>
+		</section> 
 
 		</section>
 	</body>

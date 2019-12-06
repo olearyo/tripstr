@@ -25,6 +25,12 @@ function showTripDetails(){
 			let tripH = document.getElementById('tripName');
 			// console.log(tripH);
 			tripH.appendChild(document.createTextNode(res[0].tripName))
+
+			let tripDest = document.getElementById('tripDest');
+			tripDest.appendChild(document.createTextNode(res[0].destination));
+
+			let tripHeader = document.getElementById('tripHeader');
+			for(let tripHeader of res.tr)
 			
 			// tripName.innerHTML = res[0].tripName;
 
@@ -103,6 +109,19 @@ function showTripDetails(){
 
 				//Others data
 				createDetails('p', transportation.others, othersContent, 'others-other');
+			}
+
+			///////////////////////////////// FILES DETAILS //////////////////////////////////////
+			let filesContent = document.getElementById('filesContent');
+			for(let files of res.files) {
+				//Transportation Name
+				createDetails('p', files.fileName, filesContent, 'files-name');
+
+				//Check In Date
+				createDetails('p', files.path, filesContent, 'files-path');
+
+				// //Others data
+				// createDetails('p', files.others, filesContent, 'files-other');
 			}
 
 

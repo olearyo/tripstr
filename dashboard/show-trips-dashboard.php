@@ -60,7 +60,7 @@ if(isset($_SESSION['userId'])) {
 <?php
 
         //show stays count
-        $accomTable = $pdo->prepare("SELECT COUNT(accoId) as 'stays' FROM `accommodations` WHERE `accoId` = '$tripsRow[tripId]' ");  
+        $accomTable = $pdo->prepare("SELECT COUNT(accoId) as 'stays' FROM `accommodations` WHERE `tripId` = '$tripsRow[tripId]' ");  
         $accomTable->execute(); 
         $accomTable = $accomTable ->fetch();
 ?>
@@ -70,7 +70,7 @@ if(isset($_SESSION['userId'])) {
                 </div>
 <?php
         //show events count
-        $eventsTable = $pdo->prepare("SELECT COUNT(eventId) as 'events' FROM `events` WHERE `eventId` = '$tripsRow[tripId]' "); 
+        $eventsTable = $pdo->prepare("SELECT COUNT(eventId) as 'events' FROM `events` WHERE `tripId` = '$tripsRow[tripId]' "); 
         $eventsTable->execute(); 
         $eventsTable = $eventsTable ->fetch();
 ?>
