@@ -1,5 +1,7 @@
 <?php 
 include("../includes/session.php");
+include("../includes/logo.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

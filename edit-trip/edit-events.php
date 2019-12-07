@@ -1,5 +1,7 @@
 <?php 
 include("../includes/session.php");
+include("../includes/logo.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,13 +62,17 @@ include("../includes/session.php");
         }
         
     ?>
-    <header>
-        <!-- TOP NAVIGATION -->
-    </header>
+
     <main>
         <div class="container">
-            <h1>Events
-            <?php 
+        <header>
+    <div class="title">
+            <a class="inline back" href="../dashboard/show-trips-dashboard.php"><i class="material-icons">arrow_back</i></a> 
+            <h2 class="inline">Events</h2>
+        </div>
+    </header>
+            <!-- <h1>Events -->
+            <h2><?php 
                 if($isEdit){
                     $deleteUrl = '../edit-trip/process-delete-event.php?eventId='.$eventId;
                     $backUrl = '../edit-trip/edit-events.php?eventId='.$eventId.'&tripId='.$tripId; // REPLACE THIS WITH DASHBOARD EXPANDED VIEW URL
@@ -75,7 +81,8 @@ include("../includes/session.php");
             <?php 
                 } // for above if condition
             ?>
-            </h1>
+            </h2>
+            <!-- </h1> -->
             <section>
                 <div class="form-container">
                     <form action="process-events.php" method="POST">
