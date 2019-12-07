@@ -38,8 +38,8 @@
         }
         // Allow certain file formats
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif" ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" ) {
+            echo "Sorry, only PDF, DOC, JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
         // Check if $uploadOk is set to 0 by an error
@@ -53,6 +53,8 @@
                 $stmt = $pdo->prepare("INSERT INTO `files`(`fileId`, `fileName`, `path`, `tripId`, `categoryId`) 
                     VALUES (null, '$fileName', '$target_file', '$tripId', '$categoryId')");
                 $stmt->execute();
+
+                header("Location: ../dashboard/view-trip-details.php?tripId=$tripId");
 
                 // header("Location:");
 

@@ -39,7 +39,7 @@ if(isset($_SESSION['userId'])) {
     
 
     // Once dashboard is done redirect to dashboard
-    // header("Location: edit-eventportation.php?otherId=$otherId");
+    header("Location: edit-eventportation.php?otherId=$otherId&tripId=$tripId");
 } else {
     echo("Please login to access this page");
 }

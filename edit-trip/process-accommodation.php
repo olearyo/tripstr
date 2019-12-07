@@ -45,7 +45,7 @@ if(isset($_SESSION['userId'])) {
     
 
     // Once dashboard is done redirect to dashboard
-    header("Location: edit-accommodation.php?accoId=$accoId");
+    header("Location: edit-accommodation.php?accoId=$accoId&tripId=$tripId");
 } else {
     echo("Please login to access this page");
 }

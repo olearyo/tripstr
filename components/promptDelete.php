@@ -1,6 +1,7 @@
 <?php
 $yes = $_GET['yes'];
 $no = $_GET['no'];
+$tripId = $_GET['tripId'];
 
 ?>
 <!DOCTYPE html>
@@ -17,8 +18,8 @@ $no = $_GET['no'];
 <div id="popup" class="prompt-container">
         <div class="prompt-content">
             <p>Are you sure you want to delete the record?</p>
-            <a id="no" class="button" href="<?php echo($no); ?>">Cancel</a>
-            <a id="yes" class="button secondary" href="<?php echo($yes); ?>">Delete</a>
+            <a id="no" class="button" href="<?php echo $no.'&tripId='.$tripId ?>">Cancel</a>
+            <a id="yes" class="button secondary" href="<?php echo $yes ?>">Delete</a>
         </div>
 </div>
 </body>

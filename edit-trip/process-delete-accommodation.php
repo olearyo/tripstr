@@ -10,6 +10,6 @@ include("../includes/session.php");
         $stmt = $pdo->prepare("DELETE FROM `accommodations` WHERE `accommodations`.`accoId` = '$accoId'");
         $stmt->execute();
 
-        // header("Location: edit-accommodation.php?accoId=$accoId");
+        header("Location: ../dashboard/show-trips-dashboard.php");
     }
 ?>

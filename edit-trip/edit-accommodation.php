@@ -48,9 +48,9 @@ include("../includes/logo.php");
             <?php 
                 if($isEdit){
                     $deleteUrl = '../edit-trip/process-delete-accommodation.php?accoId='.$accoId;
-                    $backUrl = '../edit-trip/edit-accommodation.php?accoId='.$accoId;
+                    $backUrl = '../edit-trip/edit-accommodation.php?accoId='.$accoId.'&tripId='.$tripId;
             ?>
-                <a class="delete" href="../components/promptDelete.php?yes=<?php echo($deleteUrl);?>&no=<?php echo($backUrl);?>">Delete</a>
+                <a class="delete" href="../components/promptDelete.php?yes=<?php echo $deleteUrl?>&no=<?php echo $backUrl?>">Delete</a>
             <?php 
                 } // for above if condition
             ?>
