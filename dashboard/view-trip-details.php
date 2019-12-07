@@ -33,10 +33,10 @@ $tripId = $_GET['tripId'];
 		<hr>
 
 		<section id="eventsContent">
-			<p id="event-name"></p>
+			<!-- <p id="event-name"></p>
 			<p id="event-address"></p>
 			<p id="event-checkIn"></p>
-			<p id="event-others"></p>
+			<p id="event-others"></p> -->
 		</section>
 
 		<hr>

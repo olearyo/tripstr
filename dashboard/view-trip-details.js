@@ -24,13 +24,14 @@ function showTripDetails(){
 			//let getParent = document.getElementById('tripDetails');
 			let tripH = document.getElementById('tripName');
 			// console.log(tripH);
+			console.log(res)
 			tripH.appendChild(document.createTextNode(res[0].tripName))
 
 			let tripDest = document.getElementById('tripDest');
 			tripDest.appendChild(document.createTextNode(res[0].destination));
 
-			let tripHeader = document.getElementById('tripHeader');
-			for(let tripHeader of res.tr)
+			// let tripHeader = document.getElementById('tripHeader');
+			// for(let tripHeader of res.tr)
 			
 			// tripName.innerHTML = res[0].tripName;
 
@@ -60,7 +61,7 @@ function showTripDetails(){
 			let eventsContent = document.getElementById('eventsContent');
 			for(let events of res.events) {
 				//accommodation Name
-				createDetails('p', events.name, eventsContent, 'event-name');
+				createDetails('h1', events.name, eventsContent, 'event-name');
 
 				//accommodation Address
 				createDetails('p', events.address, eventsContent, 'event-address');
