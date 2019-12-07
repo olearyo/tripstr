@@ -13,7 +13,7 @@ function showHideDate(e) {
 		: dateTime.setAttribute('class', 'hide')
 }
 
-// SAVE DATE
+// SAVE DATETIME
 function saveDate() {
 	let year = document.querySelector('#year').value
 	let month = document.querySelector('#month').value
@@ -30,3 +30,25 @@ function saveDate() {
 		showHideDate()
 	}
 }
+
+// SAVE DATE
+function saveDate2() {
+	
+	let year = document.querySelector('#year').value
+	let month = document.querySelector('#month').value
+	let date = document.querySelector('#date').value
+	
+	var xxc = year + '-' + month + '-' + date 
+	document.querySelector('#' + who).value = xxc
+	showHideDate()
+
+	// if (year && month && date) {
+	// 	let date =
+	// 		year + '-' + month + '-' + date 
+	// 	// set above value to source input field - who
+	// 	document.querySelector('#' + who).value = date
+		
+	// 	showHideDate()
+	// }
+}
+
