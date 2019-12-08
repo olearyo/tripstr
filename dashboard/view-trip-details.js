@@ -30,6 +30,9 @@ function showTripDetails(){
 			let tripDest = document.getElementById('tripDest');
 			tripDest.appendChild(document.createTextNode(res[0].destination));
 
+			let tripDest = document.getElementById('tripDest');
+			tripDest.appendChild(document.createTextNode(res[0].destination));
+
 			// let tripHeader = document.getElementById('tripHeader');
 			// for(let tripHeader of res.tr)
 			

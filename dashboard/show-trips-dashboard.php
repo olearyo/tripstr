@@ -53,7 +53,7 @@ if(isset($_SESSION['userId'])) {
                 <h2><?php echo($tripsRow["tripName"]); ?></h2>
                 <p><?php echo($tripsRow["fromDate"]); ?> to <?php echo($tripsRow["toDate"]); ?></p>
                     <div class="form-input half">
-                        <label>Destination</label> 
+                        <label>Destination:</label> 
                             <p><?php echo($tripsRow["destination"]);?> </p>
                     </div>
 
