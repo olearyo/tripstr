@@ -1,7 +1,9 @@
 <?php
 
+include("../includes/logo.php");
 include("../includes/session.php");
 include("../includes/db-config.php");
+include("../includes/header.php");
 
 //////////////////////// SHOW ALL THE TRIPS FOR THE USER ////////////////////////////////////
 
@@ -13,11 +15,6 @@ if(isset($_SESSION['userId'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php
-
-        include("../includes/header.php");
-    ?>
-
     <title>Dashboard</title>
 </head>
 <body class="grey">
