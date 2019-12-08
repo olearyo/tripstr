@@ -8,7 +8,7 @@
 showTripDetails();
 
 function showTripDetails(){
-    var tripDetails = document.getElementById("tripDetails");
+    // var tripDetails = document.getElementById("tripDetails");
     // tripDetails.innerHTML = '';
     
     var xhr = new XMLHttpRequest();
@@ -16,27 +16,23 @@ function showTripDetails(){
 	xhr.onreadystatechange = function(e){     
 		console.log(xhr.readyState);     
 		if(xhr.readyState === 4){        
-			//receive the response and convert to JavaScript Object 
 
-			// console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			console.log(res); 
-			//let getParent = document.getElementById('tripDetails');
 			let tripH = document.getElementById('tripName');
 			// console.log(tripH);
-			console.log(res)
+			// console.log(res);
 			tripH.appendChild(document.createTextNode(res[0].tripName))
 
 			let tripDest = document.getElementById('tripDest');
 			tripDest.appendChild(document.createTextNode(res[0].destination));
 
-			let tripDest = document.getElementById('tripDest');
-			tripDest.appendChild(document.createTextNode(res[0].destination));
+			let fromDate = document.getElementById('fromDate');
+			fromDate.appendChild(document.createTextNode(res[0].fromDate));
 
-			// let tripHeader = document.getElementById('tripHeader');
-			// for(let tripHeader of res.tr)
-			
-			// tripName.innerHTML = res[0].tripName;
+			let toDate = document.getElementById('toDate');
+			toDate.appendChild(document.createTextNode(res[0].toDate));
+
 
 			///////////////////////////////// ACCOMMODATION DETAILS //////////////////////////////////////
 			let accoContent = document.getElementById('accoContent');
@@ -123,9 +119,6 @@ function showTripDetails(){
 
 				//Check In Date
 				createDetails('p', files.path, filesContent, 'files-path');
-
-				// //Others data
-				// createDetails('p', files.others, filesContent, 'files-other');
 			}
 
 
@@ -138,46 +131,48 @@ function showTripDetails(){
 				where.appendChild(newWhat);
 			}
 
-			// let accommodation = document.getElementById('accommodation');
-			// for(let acco of res.accommodations) {
-			// 	let para = document.getElementById('par');
-			// 	let paraText =  document.createTextNode(acco.name);
-			// 	para.appendChild(paraText);
-			// 	accommodation.appendChild(para);
-			// }
+		}//if ends
 
-			// let events = document.getElementById('events');
-			// for(let event of res.events) {
-			// 	let eventName = document.getElementById('eventName');
-			// 	let eventText =  document.createTextNode(event.name);
-			// 	eventName.appendChild(eventText);
-			// 	events.appendChild(eventName);
-			// }
-			
-			// let others = document.getElementById('others');
-			// for(let others of res.others) {
-			// 	let othersName = document.getElementById('othersName');
-			// 	let othersText =  document.createTextNode(others.name);
-			// 	othersName.appendChild(othersText);
-			// 	others.appendChild(othersName);
-			// }
-
-			// for(var i=0; i<responseJSON.length; i++){
-			// 	var rowDiv = document.createElement("div");
-				
-			// 	if(parseInt(responseJSON[i].rating) > 4){
-			// 		rowDiv.setAttribute("class", "goodGame");	
-			// 	}else{
-			// 		rowDiv.setAttribute("class", "badGame");	
-			// 	}
-
-			// 	var rowDivText = document.createTextNode(responseJSON[i]["name"]);
-			// 	rowDiv.appendChild(rowDivText);
-			// 	allGames.appendChild(rowDiv);
-			}
-		}
+	}//function(e) ends
 
 	xhr.open("GET", "process-trip-details.php?tripId="+tripId, true); //true means it is asynchronous // Send variables through the url
 	xhr.send();
+
+	
+	showLinks();
+
+	function showLinks(){
+		var lhr = new XMLHttpRequest();
+	
+		lhr.onreadystatechange = function(e){     
+			console.log(lhr.readyState);     
+			if(lhr.readyState === 4){ 
+				var links = JSON.parse(lhr.responseText);
+				console.log(links);
+				
+				let editAccoLink= document.getElementById('editAcco');
+				for(let accoLink of links.accoLink){
+					createDetails('a', accoLink.accoId.tripId, editAcco, 'accoLink');
+				}
+
+				function createDetails(what, text, where, className) {
+					let newWhat = document.createElement(what);
+					newWhat.setAttribute('class', className);
+					let newText = document.createTextNode(text);
+					newWhat.appendChild(newText);
+					where.appendChild(newWhat);
+				}
+
+				lhr.open("POST", "edit-accommodation.php", true); //true means it is asynchronous // Send variables through the url
+				lhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); 
+				lhr.send("accoId"+accoId.value+"&tripId="+tripId.value);
+
+				// var accoIdLink = document.getElementById('editAcco');
+				// // console.log(tripH);
+				// console.log(accoIdLink);
+				// tripH.appendChild(document.createElement(res[0].accoId.tripId));
+			}
+		} //function(e) ends
+	} //function showLinks ends
 
 };

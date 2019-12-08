@@ -18,8 +18,6 @@ if(isset($_SESSION['userId'])) {
     <title>Dashboard</title>
 </head>
 <body class="grey">
-
-    <p><a href="../onboarding/logout.php">Logout</a></p>
     <main>
         <div class="container">
             <div class="title">
