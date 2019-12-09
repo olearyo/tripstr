@@ -26,13 +26,10 @@ include("../includes/db-config.php");
     <?php
     include("../includes/header.php");
     ?>
-    <title>Register</title>
+    <title>Login</title>
 </head>
 <body>
 
-    <header>
-        <!-- TOP NAVIGATION -->
-    </header>
     <main>
     <div class="container">
 		<div style="color:'red';">
@@ -44,8 +41,14 @@ include("../includes/db-config.php");
 		}
 		?>
 		<div>
-        <h1>Login</h1>
+        <!-- <h1>Login</h1> -->
         <div class="form-container">
+		<header>
+        <div class="title">
+            <a class="inline back" href="onboarding.php"><i class="material-icons">arrow_back</i></a> 
+            <h2 class="inline head">Login</h2>
+        </div>
+        </header>
 			<form action="process-onboarding-login.php" method="POST">
 
 				<div class="form-input">
@@ -59,7 +62,7 @@ include("../includes/db-config.php");
 				</div>
 
 				<div class="form-input">
-           			<input class="button" type="submit" name="submit" value="login" />
+           			<input class="button blueborder" type="submit" name="submit" value="login" />
         		</div>
 
 			</form>

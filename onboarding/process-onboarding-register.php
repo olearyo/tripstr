@@ -1,12 +1,12 @@
-<?php session_start();
-//process-login.php
+<?php 
+ob_start();
+session_start();
+include("../includes/db-config.php");
+include("../includes/header.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php
-    include("../includes/header.php");
-    ?>
     <title>Register</title>
 </head>
 <body>
@@ -36,45 +36,54 @@ if ($row){
 	$_SESSION['fullName'] = $row['fullName'];
 	$_SESSION['status'] = $row['status'];
 	$userNewID= $pdo->lastInsertId();
-    
+	$_SESSION['userId'] = $userNewID;
+	
+	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `userID` = ?");
+	$stmt->execute([$_SESSION['userId']]);
+	$userData= $stmt->fetchAll();
+	$_SESSION['fullName'] = $userData[0]['fullName'];
+	// var_dump($userData);
+	// var_dump($userData);
     // $stmt = $pdo->prepare("INSERT INTO `trips` 
 	// (`tripName`, `destination`, `fromDate`, `toDate`, `type`) 
 	// VALUES (?, ?, ?, ?, ?)");
 
 	// $stmt->execute([$_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type']]);
 	
-	if($_SESSION['type'] == 1){  //GROUP
-		$randomNum = rand(1000,5000); 
-		$stmt = $pdo->prepare("SELECT * FROM `trips` 
-			WHERE `uniqueId` = ?");
-		$stmt->execute([$randomNum]);
-		$row = $stmt->fetchAll();
-		while ($stmt->rowCount() > 0){
-			$randomNum = rand(1000,5000); 
-		}
+	// if($_SESSION['type'] == 1){  //GROUP
+	// 	$randomNum = rand(1000,5000); 
+	// 	$stmt = $pdo->prepare("SELECT * FROM `trips` 
+	// 		WHERE `uniqueId` = ?");
+	// 	$stmt->execute([$randomNum]);
+	// 	$row = $stmt->fetchAll();
+	// 	while ($stmt->rowCount() > 0){
+	// 		$randomNum = rand(1000,5000); 
+	// 	}
 	
 
 	
-		$stmt = $pdo->prepare("INSERT INTO `trips` 
-		(`userId`, `tripName`, `destination`, `fromDate`, `toDate`, `type`, `uniqueId`) 
-		VALUES (?, ?, ?, ?, ?, ?, ?)");
+	// 	$stmt = $pdo->prepare("INSERT INTO `trips` 
+	// 	(`userId`, `tripName`, `destination`, `fromDate`, `toDate`, `type`, `uniqueId`) 
+	// 	VALUES (?, ?, ?, ?, ?, ?, ?)");
 	
-		$stmt->execute([$userNewID, $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type'], $randomNum]);
+	// 	$stmt->execute([$userNewID, $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type'], $randomNum]);
 		
 
-		if($stmt->rowCount() ==1 ){
-			header("Location: onboarding-group.php?gid=".$randomNum);
-		}
+	// 	if($stmt->rowCount() ==1 ){
+	// 		header("Location: onboarding-group.php?gid=".$randomNum);
+	// 	}
 
-	}elseif($_SESSION['type'] == 0){
+	// }elseif($_SESSION['type'] == 0){
 
     $stmt = $pdo->prepare("INSERT INTO `trips` 
-	(`userId`, `tripName`, `destination`, `fromDate`, `toDate`, `type`) 
-	VALUES (?, ?, ?, ?, ?, ?)");
+	(`userId`, `tripName`, `destination`, `fromDate`, `toDate`) 
+	VALUES (?, ?, ?, ?, ?)");
 
-    $stmt->execute([$userNewID, $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type']]);
+    $stmt->execute([$userNewID, $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate']]);
 
-	}
+	header("Location: welcome.php");
+
+
 }else{
 	echo "something went wrong, please try again.";
 }

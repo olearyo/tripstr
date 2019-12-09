@@ -1,13 +1,13 @@
-<?php session_start();
-//process-login.php
+<?php 
+ob_start();
+session_start();
+include("../includes/db-config.php");
+include("../includes/header.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php
-    include("../includes/header.php");
-    ?>
-    <title>Register</title>
+    <title>Login</title>
 </head>
 <body>
 
@@ -36,38 +36,38 @@ if($stmt->rowCount()==1){
 	$_SESSION['fullName'] = $row['fullName'];
 	$_SESSION['status'] = $row['status'];
 	
-	if($_SESSION['type'] == 1){ 
-		$randomNum = rand(1000,5000); 
-		$stmt = $pdo->prepare("SELECT * FROM `trips` 
-			WHERE `uniqueId` = ?");
-		$stmt->execute([$randomNum]);
-		$row = $stmt->fetchAll();
-		while ($stmt->rowCount() > 0){
-			$randomNum = rand(1000,5000); 
-		}
+	// if($_SESSION['type'] == 1){ 
+	// 	$randomNum = rand(1000,5000); 
+	// 	$stmt = $pdo->prepare("SELECT * FROM `trips` 
+	// 		WHERE `uniqueId` = ?");
+	// 	$stmt->execute([$randomNum]);
+	// 	$row = $stmt->fetchAll();
+	// 	while ($stmt->rowCount() > 0){
+	// 		$randomNum = rand(1000,5000); 
+	// 	}
 	
-		// echo($randomNum);
+	// 	// echo($randomNum);
 	
-		$stmt = $pdo->prepare("INSERT INTO `trips` 
-		(`userId`, `tripName`, `destination`, `fromDate`, `toDate`, `type`, `uniqueId`) 
-		VALUES (?, ?, ?, ?, ?, ?, ?)");
+	// 	$stmt = $pdo->prepare("INSERT INTO `trips` 
+	// 	(`userId`, `tripName`, `destination`, `fromDate`, `toDate`, `type`, `uniqueId`) 
+	// 	VALUES (?, ?, ?, ?, ?, ?, ?)");
 	
-		$stmt->execute([$_SESSION['userId'], $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type'], $randomNum]);
-		if($stmt->rowCount() ==1 ){
-			header("Location: onboarding-group.php?gid=".$randomNum);
-		}
+	// 	$stmt->execute([$_SESSION['userId'], $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type'], $randomNum]);
+	// 	if($stmt->rowCount() ==1 ){
+	// 		header("Location: onboarding-group.php?gid=".$randomNum);
+	// 	}
 		
 		
-	}elseif($_SESSION['type'] == 0){
+	// }elseif($_SESSION['type'] == 0){
 
     $stmt = $pdo->prepare("INSERT INTO `trips` 
-	(`userId`, `tripName`, `destination`, `fromDate`, `toDate`, `type`) 
-	VALUES (?, ?, ?, ?, ?, ?)");
+	(`userId`, `tripName`, `destination`, `fromDate`, `toDate`) 
+	VALUES (?, ?, ?, ?, ?)");
 
-    $stmt->execute([$_SESSION['userId'], $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate'], $_SESSION['type']]);
-
+    $stmt->execute([$_SESSION['userId'], $_SESSION['tripName'], $_SESSION['destination'], $_SESSION['fromDate'], $_SESSION['toDate']]);
+		var_dump($stmt->errorInfo());
 	if($stmt->rowCount() ==1 ){
-		header("Location: welcome.php");
+		header("Location: ../dashboard/show-trips-dashboard.php");
 	}
 
 
@@ -82,6 +82,6 @@ if($stmt->rowCount()==1){
 		</main>
 
 <?php
-}
+
 }
 ?>

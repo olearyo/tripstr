@@ -23,7 +23,7 @@ include("../includes/logo.php");
         $category = 1;
         $categoryId = 1;
         $tripId = $_GET['tripId'];
-
+        echo($tripId);
 
         if(isset($_GET['accoId']) && isset($_GET['tripId'])) {
             $accoId = $_GET["accoId"];
@@ -50,13 +50,14 @@ include("../includes/logo.php");
                     $deleteUrl = '../edit-trip/process-delete-accommodation.php?accoId='.$accoId;
                     $backUrl = '../edit-trip/edit-accommodation.php?accoId='.$accoId.'&tripId='.$tripId;
             ?>
-                <a class="delete" href="../components/promptDelete.php?yes=<?php echo $deleteUrl?>&no=<?php echo $backUrl?>">Delete</a>
+                <a class="delete" href="../components/promptDelete.php?yes=<?php echo($deleteUrl);?>&no=<?php echo($backUrl);?>">Delete</a>
             <?php 
                 } // for above if condition
             ?>
             </h1>
             <section>
                 <div class="form-container">
+        
                     <form action="process-accommodation.php" method="POST">
                         <input type="hidden" name="accoId" value="<?php if($isEdit){ echo($accoId);} ?>">
                         <input type="hidden" name="tripId" value="<?php echo($tripId); ?>">

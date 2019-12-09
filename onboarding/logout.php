@@ -3,7 +3,6 @@ include("../includes/db-config.php");
 
 
 ?>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <?php
@@ -13,9 +12,6 @@ include("../includes/db-config.php");
 </head>
 <body>
 
-    <header>
-        <!-- TOP NAVIGATION -->
-    </header>
     <main>
     <div class="container">
 		<div style="color:'red';">
@@ -27,8 +23,13 @@ include("../includes/db-config.php");
 		}
 		?>
 		<div>
-        <h1>Logout</h1>
         <div class="form-container">
+        <header>
+        <div class="title">
+            <a class="inline back" href="../dashboard/show-trips-dashboard.php"><i class="material-icons">arrow_back</i></a> 
+            <h2 class="inline head">Logout</h2>
+        </div>
+        </header>
 			<p>Are you sure you want to log out?</p>
                         <button class="button" onclick="window.location.href = 'process-logout.php';">LOG OUT</button>
                     </div>

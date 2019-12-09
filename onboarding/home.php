@@ -1,39 +1,38 @@
-<?php session_start();
+<?php
 
 include("../includes/db-config.php");
+include("../includes/header.php");
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php
-    include("../includes/header.php");
-    ?>
     <title>Tripstr</title>
 </head>
 <body>
 
     <header>
-        <!-- TOP NAVIGATION -->
+        <div class="title">
+            <img id="logo-home" src="../img/tripstr-logo.png">
+                <p>Organize your trips...</p>
+            </div>
     </header>
+
+
     <main>
     <div class="container">
-        <h1>Create a Trip</h1>
+        <!-- <h1>Create a Trip</h1> -->
 
 		
-        <img class="logo" src="../img/tripstr-logo.png">
        
 
 
+        <div class="title">
 
-            <div class="half">
                 <button class="button" onclick="window.location.href = 'create-trip.php';">CREATE A TRIP</button>
-            </div>
-
-            <div class="half">
                 <button class="button blueborder" onclick="window.location.href = 'login.php';">LOGIN</button>
-            <div>
 
+        </div>
 
     </div>
 </main>

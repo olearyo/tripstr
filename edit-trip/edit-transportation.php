@@ -72,11 +72,11 @@ include("../includes/logo.php");
                         </div>
                         <div class="form-input half">
                             <label for="checkIn">Departure Time</label>
-                            <input id="checkIn" name="checkIn" type="text" placeholder="Check in" value="<?php if($isEdit){ echo($row['checkIn']); } ?>">
+                            <input id="checkIn" name="checkIn" type="text" placeholder="Departure" value="<?php if($isEdit){ echo($row['checkIn']); } ?>">
                         </div>
                         <div class="form-input half">
                             <label for="checkOut">Arrival Time</label>
-                            <input id="checkOut" name="checkOut" type="text" placeholder="Check out" value="<?php if($isEdit){ echo($row['checkOut']); } ?>">
+                            <input id="checkOut" name="checkOut" type="text" placeholder="Arrival" value="<?php if($isEdit){ echo($row['checkOut']); } ?>">
                         </div>
                         <div class="form-input half">
                             <label for="bookingId">Booking ID</label>

@@ -11,5 +11,7 @@ include("../includes/session.php");
         $stmt->execute();
 
         header("Location: ../dashboard/show-trips-dashboard.php");
+
+        // header("Location: edit-accommodation.php?accoId=$accoId");
     }
 ?>

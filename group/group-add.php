@@ -1,9 +1,9 @@
 <?php session_start();
 
 // ADD TO RECIEVE TRIP ID FOR THE USER
-$tripId = 2;
+$tripId = $_GET['tripId'];
 //$_GET['tripId'];
-$userId = 1;
+$userId = $_GET['userId'];
 
 include("../includes/db-config.php");
 

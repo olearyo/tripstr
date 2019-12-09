@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $_SESSION['destination'] = $_POST['destination'];
     $_SESSION['fromDate'] = $_POST['fromDate'];
     $_SESSION['toDate'] = $_POST['toDate'];
-    $_SESSION['type'] = $_POST['type'];
+    // $_SESSION['type'] = $_POST['type'];
     } 
 
 // $tripName = $_POST['tripName'];
@@ -28,12 +28,15 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
 
-    <header>
-        <!-- TOP NAVIGATION -->
-    </header>
+    <!-- <header>
+        <div class="title">
+                <a class="inline back" href="create-trip.php"><i class="material-icons">arrow_back</i></a> 
+                <h2 class="inline">Create a Trip</h2>
+            </div>
+    </header> -->
     <main>
         <div class="container">
-            <h1>Create a Trip</h1>
+            <!-- <h1>Create a Trip</h1> -->
 
                 <div class="box">
 
@@ -46,7 +49,7 @@ if (isset($_POST['submit'])) {
                     </div>
 
                     <div class="register">
-                        <button class="button" onclick="window.location.href = 'onboarding-register.php';">REGISTER</button>
+                        <button class="button blueborder" onclick="window.location.href = 'onboarding-register.php';">REGISTER</button>
                     <div>
                 </div>
         </div>

@@ -24,7 +24,7 @@ include("../includes/logo.php");
         if(isset($_GET['otherId']) && isset($_GET['tripId'])) {
             $otherId = $_GET["otherId"];
             
-            $stmt = $pdo->prepare("SELECT * FROM `events` WHERE `otherId` = '$otherId' AND `tripId` = '$tripId'");
+            $stmt = $pdo->prepare("SELECT * FROM `others` WHERE `otherId` = '$otherId' AND `tripId` = '$tripId'");
             $stmt->execute();
             $row = $stmt->fetch();
 

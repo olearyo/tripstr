@@ -1,8 +1,9 @@
 <?php
-$userId = 2;
-$uniqueId = $_POST['uniqueId'];
-$tripId = $_POST['tripId'];
-//BRING TRIP ID OVER
+
+$userId = $_GET['userId'];
+$uniqueId = $_GET['uniqueId'];
+$tripId = $_GET['tripId'];
+
 
 include("../includes/db-config.php");
 
@@ -23,6 +24,6 @@ if($row["count(userId)"] == 1) {
 // Place User information in the table
 
 
-echo("Thank you for submitting the form!");
+echo("Thank you for submitting!");
 
 ?>

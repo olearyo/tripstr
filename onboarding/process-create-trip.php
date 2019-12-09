@@ -6,7 +6,7 @@ $tripName = $_POST['tripName'];
 $destination = $_POST['destination'];
 $fromDate = $_POST['fromDate'];
 $toDate = $_POST['toDate'];
-$type = $_POST['type'];
+
 
 
 $stmt = $pdo->prepare("INSERT INTO `trips` 

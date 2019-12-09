@@ -65,14 +65,10 @@ include("../includes/logo.php");
 
     <main>
         <div class="container">
-        <header>
-    <div class="title">
-            <a class="inline back" href="../dashboard/show-trips-dashboard.php"><i class="material-icons">arrow_back</i></a> 
-            <h2 class="inline">Events</h2>
-        </div>
-    </header>
-            <!-- <h1>Events -->
-            <h2><?php 
+            
+
+            <h1>Events
+            <?php 
                 if($isEdit){
                     $deleteUrl = '../edit-trip/process-delete-event.php?eventId='.$eventId;
                     $backUrl = '../edit-trip/edit-events.php?eventId='.$eventId.'&tripId='.$tripId; // REPLACE THIS WITH DASHBOARD EXPANDED VIEW URL
@@ -81,7 +77,7 @@ include("../includes/logo.php");
             <?php 
                 } // for above if condition
             ?>
-            </h2>
+            </h1>
             <!-- </h1> -->
             <section>
                 <div class="form-container">

@@ -1,132 +1,63 @@
 <?php
 
+include("../includes/session.php");
+include("../includes/logo.php");
 $tripId = $_GET['tripId'];
-$userId = NULL;
 
-include("../includes/db-config.php");
-
-$tripsTable = $pdo->prepare("SELECT * FROM `trips` WHERE `tripId` = '$tripId';");
-$tripsTable -> execute();
-
-$usr_grTable = $pdo->prepare("SELECT * FROM `users-groups`;");
-$usr_grTable -> execute();
-
-$accomIdTable = $pdo->prepare("SELECT * FROM `accommodations` WHERE `tripId` = $tripId;");
-$accomIdTable -> execute();
-
-$accomDetailsTable = $pdo->prepare("SELECT * FROM `accommodations` WHERE `tripId` = $tripId;");
-$accomDetailsTable -> execute();
-
-$transptIdTable = $pdo->prepare("SELECT * FROM `transportation` WHERE `tripId` = $tripId;");
-$transptIdTable -> execute();
-
-$eventsIdTable = $pdo->prepare("SELECT * FROM `events` WHERE `tripId` = $tripId;");
-$eventsIdTable -> execute();
-
-$othersIdTable = $pdo->prepare("SELECT * FROM `others` WHERE `tripId` = $tripId;");
-$othersIdTable -> execute();
-
-echo("<a href=show-trips-dashboard.php> Back to Dashboard </a>");
-echo("<br><br>");
-
-while($tripsRow = $tripsTable->fetch()) {
-    while($transptRow = $transptIdTable->fetch()){
-        while($accomRow = $accomIdTable ->fetch()){
-            while($eventsRow = $eventsIdTable->fetch()){
-                while($othersRow = $othersIdTable->fetch()){
-                    echo('<div>');
-                        
-                    echo("<h2>");
-                    echo($tripsRow["tripName"]);
-                    echo("</h2>");
-
-                    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SHOW ACCOMMODATION DETAILS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-                    $accomDetailsTable = $accomDetailsTable -> fetch();
-                    echo("<h3>");
-                    echo("Staying at: ".$accomDetailsTable["name"]);
-                    echo("</h3>");
-                    echo("<br>");
-                    echo("Booking ID: ".$accomDetailsTable["bookingId"]);
-                    echo("<br><br>");
-                    echo("Address: ".$accomDetailsTable["address"]);
-                    echo("<br><br>");
-
-                    //show accommodation CheckIn and CheckOut Dates
-                    echo("Check In: ".$accomDetailsTable["checkIn"]);
-                    echo(" | ");
-                    echo("Check Out: ".$accomDetailsTable["checkOut"]);
-                    echo("<br><br>");
-
-                    echo("<a href=../edit-trip/edit-accommodation.php?accoId=$accomRow[accoId]&tripId=$tripId>Edit Accommodation</a>");
-                    echo("<br>");
 ?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Your trip details</title>
+		<link rel="stylesheet" href="../css/base-css.css"/>
 
-<hr>
+		<script>var tripId = <?php echo($tripId); ?>;
+			console.log(tripId)</script>
+		<script src="view-trip-details.js"></script>
+	</head>
 
-<?php
+	<body class="grey">
+		<div class="container ">
+		<a class="delete" href="../dashboard/show-trips-dashboard.php">Back to your Trips</a>
+			<div class="box-wide-outer">
+            	<div class="form-container">
+					<div class="form-input half">
+						<h1 id="tripName"></h1><br>
+						<h2 id="tripDest"></h2><br>
+					</div>
 
-                    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SHOW TRANSPORTATION DETAILS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-                    $transptIdTable = $transptIdTable -> fetch();
-                    echo("<h3>");
-                    echo("Travelling by: ".$transptIdTable["transId"]);
-                    echo("</h3>");
-                    echo("<br>");
-                    echo("Booking ID: ".$transptIdTable["bookingId"]);
-                    echo("<br><br>");
+					<h1 class="categoryHeaders">Dates:</h1>
+					<div class="form-inputInline">
+						<p id="fromDate" class="tripDates"></p> <p id="toDate" class="tripDates"> to </p>
+					</div>
+					
+					<h1 class="categoryHeaders">Stays</h1>
+					<a href="../edit-trip/edit-accommodation.php?tripId=<?php echo($tripId); ?>" class="addLinks">Add Accomodation</a>
+					<div class="box-wide-inside" id="accoContent"></div>
 
-                    //show transportation CheckIn and CheckOut Dates
-                    echo("Departure: ".$transptIdTable["checkIn"]);
-                    echo(" | ");
-                    echo("Arrival: ".$transptIdTable["checkOut"]);
-                    echo("<br>");
+					<h1 class="categoryHeaders">Events</h1>
+					<a href="../edit-trip/edit-events.php?tripId=<?php echo($tripId); ?>" class="addLinks">Add Event</a>
+					<div class="box-wide-inside" id="eventsContent">
+					</div>
 
-                    echo("<a href=../edit-trip/edit-transportation.php?transId=$transptRow[transId]&tripId=$tripId>Edit Transportation</a>");
-                    echo("<br>");
-?>
+					<h1 class="categoryHeaders">Transportation</h1>
+					<a href="../edit-trip/edit-transportation.php?tripId=<?php echo($tripId); ?>" class="addLinks">Add Transportation</a>
+					<div class="box-wide-inside" id="transContent">
+					</div> 
+					
+					<h1 class="categoryHeaders">Others</h1>
+					<a href="../edit-trip/edit-others.php?tripId=<?php echo($tripId); ?>" class="addLinks">Add Miscellaneous</a>
+					<div class="box-wide-inside" id="othersContent">
+					</div>
 
-<hr>
+					<h1 class="categoryHeaders">Docs</h1>
+					<!-- <a href="../edit-trip/upload-file.php?tripId=<?php echo($tripId); ?>" class="addLinks">Upload a Doc</a> -->
+					<div class="box-wide-inside" id="filesContent">
+					</div> 
 
-<?php
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SHOW EVENTS DETAILS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-                    $eventsIdTable = $eventsIdTable -> fetch();
-                    echo("<h3>");
-                    echo("Events: ".$eventsIdTable["name"]);
-                    echo("</h3>");
-                    echo("<br>");
-                    echo("Address: ".$eventsIdTable["address"]);
-                    echo("<br><br>");
-                    echo("Check In: ".$eventsIdTable["checkIn"]);
-                    echo("Others: ".$eventsIdTable["others"]);
-                    echo("<br>");
-
-                    echo("<a href=../edit-trip/edit-transportation.php?transId=$eventsRow[eventId]&tripId=$tripId>Edit Event</a>");
-                    echo("<br>");
-?>
-
-<hr>
-
-<?php
-
-                    //show group members count
-                    $usr_grTable = $pdo->prepare("SELECT COUNT(userId) as 'groups' FROM `users-groups` WHERE `tripId` = '$tripsRow[tripId]' "); 
-                    $usr_grTable -> execute(); 
-                    $usr_grTable = $usr_grTable ->fetch();
-                    echo("<br><br>");
-                    echo("Group members:  ");
-                    echo ($usr_grTable['groups']);
-                    echo("<a href='../group/group-home.php'> View Members</a>");
-                    echo("<br><br>");
-                    
-                }
-?>
-
-<hr>
-
-<?php
-                echo('</div>');
-            }
-        }
-    }
-}
-?>
+					<a href="#"><center> Go to Top </center></a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

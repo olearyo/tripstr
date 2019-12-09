@@ -38,8 +38,8 @@
         }
         // Allow certain file formats
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" ) {
-            echo "Sorry, only PDF, DOC, JPG, JPEG, PNG & GIF files are allowed.";
+        && $imageFileType != "gif" ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
         // Check if $uploadOk is set to 0 by an error
@@ -55,8 +55,6 @@
                 $stmt->execute();
 
                 header("Location: ../dashboard/view-trip-details.php?tripId=$tripId");
-
-                // header("Location:");
 
             } else {
                 echo "Sorry, there was an error uploading your file.";
@@ -74,6 +72,6 @@
     //     `others` = '$others' WHERE `accommodations`.`accoId` = '$accoId'");
     // $stmt->execute();
 
-    // header("Location: edit-accommodation.php?accoId=$accoId");
+    header("Location: ../dashboard/view-trip-details.php?tripId=$tripId");
     }
 ?>

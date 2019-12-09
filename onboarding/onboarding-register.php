@@ -1,4 +1,5 @@
 <?php session_start();
+
 include("../includes/db-config.php");
 
 ?>
@@ -11,14 +12,17 @@ include("../includes/db-config.php");
     <title>Register</title>
 </head>
 <body>
-
-    <header>
-        <!-- TOP NAVIGATION -->
-    </header>
+	
     <main>
     <div class="container">
-        <h1>Register</h1>
+        <!-- <h1>Register</h1> -->
         <div class="form-container">
+		<header>
+        <div class="title">
+            <a class="inline back" href="onboarding.php"><i class="material-icons">arrow_back</i></a> 
+            <h2 class="inline head">Register</h2>
+        </div>
+        </header>
 			<form action="process-onboarding-register.php" method="POST">
 
 				<div class="form-input">
@@ -38,7 +42,7 @@ include("../includes/db-config.php");
 				</div>
 
 				<div class="form-input">
-           			<input class="button" type="submit" name="submit" value="register"/>
+           			<input class="button blueborder" type="submit" name="submit" value="register"/>
         		</div>
 
 			</form>
