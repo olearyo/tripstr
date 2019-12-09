@@ -46,12 +46,16 @@ $tripId = $_GET['tripId'];
 					</div> 
 					
 					<h1 class="categoryHeaders">Others</h1>
+					<a href="../edit-trip/edit-others.php?tripId=<?php echo($tripId); ?>" class="addLinks">Add Miscellaneous</a>
 					<div class="box-wide-inside" id="othersContent">
 					</div>
 
 					<h1 class="categoryHeaders">Docs</h1>
+					<!-- <a href="../edit-trip/upload-file.php?tripId=<?php echo($tripId); ?>" class="addLinks">Upload a Doc</a> -->
 					<div class="box-wide-inside" id="filesContent">
 					</div> 
+
+					<a href="#"><center> Go to Top </center></a>
 				</div>
 			</div>
 		</div>

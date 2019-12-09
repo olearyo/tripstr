@@ -395,7 +395,7 @@ label, .trans-name, .trans-name, .others-name, .files-name, .form-inputInline{
 	margin-top: 1%;
 }
 
-h3, .acco-name, .acco-bookingId, .acco-checkIn, .acco-checkOut, .event-name, .trans-name, .others-name {
+h3, .acco-name, .acco-bookingId, .acco-checkIn, .acco-checkOut, .event-name, .trans-name, .others-name, .files-name {
 	font-family: 'Robot Condensed', sans-serif;
 	font-weight: 500;
 	font-size: 1rem;

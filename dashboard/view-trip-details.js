@@ -148,10 +148,10 @@ function showTripDetails(){
 			for(let others of res.others) {
 
 				//edit transportation link
-				let editLink =  document.createElement('a')
+				let editLink =  document.createElement('a');
 				let url = "../edit-trip/edit-transportation.php?otherId=" + others.otherId +"&tripId="+ others.tripId
 				editLink.innerHTML = "Edit Miscellaneous Event";
-				editLink.setAttribute('href', url)
+				editLink.setAttribute('href', url);
 				othersContent.appendChild(editLink);
 
 				//Others Name
@@ -172,11 +172,21 @@ function showTripDetails(){
 			///////////////////////////////// FILES DETAILS //////////////////////////////////////
 			let filesContent = document.getElementById('filesContent');
 			for(let files of res.files) {
-				//Transportation Name
-				createDetails('p', files.fileName, filesContent, 'files-name');
+				//File Name
+				// createDetails('h2', 'File Name:', filesContent);
+				// createDetails('h3', files.fileName, filesContent, 'files-name');
 
-				//Check In Date
-				createDetails('p', files.path, filesContent, 'files-path');
+				//File Path
+				createDetails('h2', 'File:', filesContent);
+				// createDetails('h3', files.path, filesContent, 'files-path');
+				// createDocsLink('a',filesContent, 'uploadLink' );
+				let seeLink =  document.createElement('a');
+				let link = "../edit-trip/" + files.path
+				seeLink.innerHTML = files.fileName;
+				seeLink.setAttribute('href', link);
+				filesContent.appendChild(seeLink);
+
+				createDivider('hr', filesContent, 'divider');
 			}
 
 
@@ -189,8 +199,8 @@ function showTripDetails(){
 				where.appendChild(newWhat);
 			}
 
-			function createDivider(elemet, whereTo, classTo){
-				let elementName = document.createElement(elemet);
+			function createDivider(element, whereTo, classTo){
+				let elementName = document.createElement(element);
 				elementName.setAttribute('class', classTo);
 				whereTo.appendChild(elementName);
 			}
