@@ -25,7 +25,7 @@ $tripId = $_GET['tripId'];
 					</div>
 
 					<div class="form-input inline">
-						<p id="fromDate"></h1> to <p id="toDate"></p>
+						<p id="fromDate"></h1><p id="toDate"></p>
 					</div>
 					
 					<label>Stays</label>
