@@ -107,16 +107,20 @@ img.logo{
 
 a:link {
 	color: #4227f2;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 550;
+	margin: 5% 0 20% 0;
+	text-decoration: none;
 }
 
-/* a:visited {
-	color: #696b8c;
-} */
+a:visited {
+	color: #1d03c5;
+}
 
 a:hover, .material-icons:hover{
 	color: #575ff2;
 }
-
+ 
 
 /* DASHBOARD */
 
@@ -175,11 +179,30 @@ a:hover, .material-icons:hover{
 	width: 100%;
 	min-height: 200px;
 	min-width: 360px;
-	margin-top: 10%;
-	margin-bottom: 20%;
+	margin-top: 1.5%;
+	margin-bottom: 10%;
 	padding: 20px;
 	border-radius: 20px;
 	background-color: #eef0f181;
+}
+
+.tripDates{
+	display: inline-block;
+	font-size: 1rem;
+	margin-top: 0px;
+	margin-bottom: 5%;
+}
+
+.divider{
+	margin: 4% 0 4% 0;
+}
+
+.addLinks{
+	display: block;
+	margin: 0px !important;
+    padding: 0;
+	text-align: right;
+	margin-top: -34px !important;
 }
 
 /* FORMS */
@@ -319,6 +342,14 @@ h1 .delete {
 	font-size: 1rem;
 }
 
+.categoryHeaders{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 550;
+	font-size: 1.6rem;
+	color: #272857;
+	margin-bottom: 1%;
+}
+
 /* =========== POPUP STYLE */
 .prompt-container {
 	display: block;
@@ -356,11 +387,31 @@ h1 {
 }
 
 h2,
-label, .acco-name, .trans-name, .event-name, .trans-name, .others-name, .files-name{
+label, .trans-name, .trans-name, .others-name, .files-name, .form-inputInline{
 	font-family: 'Roboto Condensed', sans-serif;
 	font-weight: 500;
-	font-size: 1.2em;
+	font-size: 1.3rem;
 	color: #333333;
+	margin-top: 1%;
+}
+
+h3, .acco-name, .acco-bookingId, .acco-checkIn, .acco-checkOut, .event-name, .trans-name, .others-name {
+	font-family: 'Robot Condensed', sans-serif;
+	font-weight: 500;
+	font-size: 1rem;
+	color: #4C4D75;
+	padding: 10px 0px;
+	margin: 1% 0% 3% 0%;
+}
+
+h4, .acco-address{
+	font-family: 'Robot Condensed', sans-serif;
+	font-weight: 450;
+	font-size: 1rem;
+	color: #757575;
+	padding: 2px 0px;
+	margin: 0% 0% 5% 0%;
+	line-height: 0%;
 }
 
 p, span,

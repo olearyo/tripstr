@@ -33,82 +33,140 @@ function showTripDetails(){
 			let toDate = document.getElementById('toDate');
 			toDate.appendChild(document.createTextNode(res[0].toDate));
 
-
 			///////////////////////////////// ACCOMMODATION DETAILS //////////////////////////////////////
 			let accoContent = document.getElementById('accoContent');
 			for(let accommodations of res.accommodations) {
+
+				//edit accommodation link
+				let editLink =  document.createElement('a')
+				let url = "../edit-trip/edit-accommodation.php?accoId=" + accommodations.accoId +"&tripId="+ accommodations.tripId
+				editLink.innerHTML = "Edit Accommodation";
+				editLink.setAttribute('href', url)
+				accoContent.appendChild(editLink);
+
 				//accommodation Name
-				createDetails('p', accommodations.name, accoContent, 'acco-name');
+				createDetails('h2', 'Address:', accoContent);
+				createDetails('h3', accommodations.name, accoContent, 'acco-name');
 
 				//accommodation Address
-				createDetails('p', accommodations.address, accoContent, 'acco-address');
+				createDetails('h4', accommodations.address, accoContent, 'acco-address');
 
-				//Transport Booking ID
-				createDetails('p', accommodations.bookingId, accoContent, 'acco-bookingId');
+				//Accommodation Booking ID
+				createDetails('h2', 'Booking ID:', accoContent);
+				createDetails('h3', accommodations.bookingId, accoContent, 'acco-bookingId');
 
 				//Check In Date
-				createDetails('p', accommodations.checkIn, accoContent, 'acco-checkIn');
+				createDetails('h2', 'Check In:', accoContent);
+				createDetails('h3', accommodations.checkIn, accoContent, 'acco-checkIn');
 
 				//Check Out Date
-				createDetails('p', accommodations.checkOut, accoContent, 'acco-checkOut');
+				createDetails('h2', 'Check Out:', accoContent);
+				createDetails('h3', accommodations.checkOut, accoContent, 'acco-checkOut');
 
 				//accommodation Others data
-				createDetails('p', accommodations.others, accoContent, 'acco-others');
+				createDetails('h2', 'Miscellaneous:', accoContent);
+				createDetails('h3', accommodations.others, accoContent, 'acco-others');
+
+				createDivider('hr', accoContent, 'divider');
 			}
 
 			///////////////////////////////// EVENTS DETAILS //////////////////////////////////////
 			let eventsContent = document.getElementById('eventsContent');
 			for(let events of res.events) {
-				//accommodation Name
-				createDetails('h1', events.name, eventsContent, 'event-name');
 
-				//accommodation Address
-				createDetails('p', events.address, eventsContent, 'event-address');
+				//edit event link
+				let editLink =  document.createElement('a')
+				let url = "../edit-trip/edit-events.php?eventId=" + events.eventId +"&tripId="+ events.tripId
+				editLink.innerHTML = "Edit Event";
+				editLink.setAttribute('href', url)
+				eventsContent.appendChild(editLink);
+
+				//events Name
+				createDetails('h2', 'Event Name:', eventsContent);
+				createDetails('h3', events.name, eventsContent, 'event-name');
+
+				//events Address
+				createDetails('h2', 'Address:', eventsContent);
+				createDetails('h3', events.address, eventsContent, 'event-address');
 
 				//Check In Date
-				createDetails('p', events.checkIn, eventsContent, 'event-checkIn');
+				createDetails('h2', 'Check In:', eventsContent);
+				createDetails('h3', events.checkIn, eventsContent, 'event-checkIn');
 
-				//accommodation Others data
-				createDetails('p', events.others, eventsContent, 'event-others');
+				//events Others data
+				createDetails('h2', 'Miscellaneous:', eventsContent);
+				createDetails('h3', events.others, eventsContent, 'event-others');
+
+				createDivider('hr', eventsContent, 'divider');
 			}
 
 
 			///////////////////////////////// TRANSPORT DETAILS //////////////////////////////////////
 			let transContent = document.getElementById('transContent');
 			for(let transportation of res.transportation) {
+
+				//edit transportation link
+				let editLink =  document.createElement('a')
+				let url = "../edit-trip/edit-transportation.php?transId=" + transportation.transId +"&tripId="+ transportation.tripId
+				editLink.innerHTML = "Edit Transportation";
+				editLink.setAttribute('href', url)
+				transContent.appendChild(editLink);
+
 				//Transportation Name
-				createDetails('p', transportation.name, transContent, 'trans-name');
+				createDetails('h2', 'Transport Name:', transContent);
+				createDetails('h3', transportation.name, transContent, 'trans-name');
 
 				//Transport Booking ID
-				createDetails('p', transportation.bookingId, transContent, 'trans-bookingId');
+				createDetails('h2', 'Booking ID:', transContent);
+				createDetails('h3', transportation.bookingId, transContent, 'trans-bookingId');
 
 				//Check In Date
-				createDetails('p', transportation.checkIn, transContent, 'trans-checkIn');
+				createDetails('h2', 'Departure Date:', transContent);
+				createDetails('h3', transportation.checkIn, transContent, 'trans-checkIn');
 
 				//Check Out Date
-				createDetails('p', transportation.checkOut, transContent, 'trans-checkOut');
+				createDetails('h2', 'Arrival Date:', transContent);
+				createDetails('h3', transportation.checkOut, transContent, 'trans-checkOut');
 
 				//Departure From
-				createDetails('p', transportation.departure, transContent, 'trans-departure');
+				createDetails('h2', 'Departs From:', transContent);
+				createDetails('h3', transportation.departure, transContent, 'trans-departure');
 
 				//Arrival At
-				createDetails('p', transportation.arrival, transContent, 'trans-arrival');
+				createDetails('h2', 'Arrives At:', transContent);
+				createDetails('h3', transportation.arrival, transContent, 'trans-arrival');
 
 				//Others data
-				createDetails('p', transportation.others, transContent, 'trans-others');
+				createDetails('h2', 'Miscellaneous:', transContent);
+				createDetails('h3', transportation.others, transContent, 'trans-others');
+
+				createDivider('hr', transContent, 'divider');
 			}
 
 			///////////////////////////////// OTHERS DETAILS //////////////////////////////////////
 			let othersContent = document.getElementById('othersContent');
-			for(let transportation of res.transportation) {
-				//Transportation Name
-				createDetails('p', transportation.name, othersContent, 'others-name');
+			for(let others of res.others) {
+
+				//edit transportation link
+				let editLink =  document.createElement('a')
+				let url = "../edit-trip/edit-transportation.php?otherId=" + others.otherId +"&tripId="+ others.tripId
+				editLink.innerHTML = "Edit Miscellaneous Event";
+				editLink.setAttribute('href', url)
+				othersContent.appendChild(editLink);
+
+				//Others Name
+				createDetails('h2', 'Miscellaneous Event:', othersContent);
+				createDetails('h3', others.name, othersContent, 'others-name');
 
 				//Check In Date
-				createDetails('p', transportation.checkIn, othersContent, 'others-checkIn');
+				createDetails('h2', 'Important Date:', othersContent);
+				createDetails('h3', others.checkIn, othersContent, 'others-checkIn');
 
 				//Others data
-				createDetails('p', transportation.others, othersContent, 'others-other');
+				createDetails('h2', 'Other information:', othersContent);
+				createDetails('h3', others.others, othersContent, 'others-other');
+
+				createDivider('hr', othersContent, 'divider');
 			}
 
 			///////////////////////////////// FILES DETAILS //////////////////////////////////////
@@ -131,6 +189,12 @@ function showTripDetails(){
 				where.appendChild(newWhat);
 			}
 
+			function createDivider(elemet, whereTo, classTo){
+				let elementName = document.createElement(elemet);
+				elementName.setAttribute('class', classTo);
+				whereTo.appendChild(elementName);
+			}
+
 		}//if ends
 
 	}//function(e) ends
@@ -139,40 +203,40 @@ function showTripDetails(){
 	xhr.send();
 
 	
-	showLinks();
+	// showLinks();
 
-	function showLinks(){
-		var lhr = new XMLHttpRequest();
+	// function showLinks(){
+	// 	var lhr = new XMLHttpRequest();
 	
-		lhr.onreadystatechange = function(e){     
-			console.log(lhr.readyState);     
-			if(lhr.readyState === 4){ 
-				var links = JSON.parse(lhr.responseText);
-				console.log(links);
+	// 	lhr.onreadystatechange = function(e){     
+	// 		console.log(lhr.readyState);     
+	// 		if(lhr.readyState === 4){ 
+	// 			var links = JSON.parse(lhr.responseText);
+	// 			console.log(links);
 				
-				let editAccoLink= document.getElementById('editAcco');
-				for(let accoLink of links.accoLink){
-					createDetails('a', accoLink.accoId.tripId, editAcco, 'accoLink');
-				}
+	// 			let editAccoLink= document.getElementById('editAcco');
+	// 			for(let accoLink of links.accoLink){
+	// 				createDetails('a', accoLink.accoId.tripId, editAccoLink, 'accoLink');
+	// 			}
 
-				function createDetails(what, text, where, className) {
-					let newWhat = document.createElement(what);
-					newWhat.setAttribute('class', className);
-					let newText = document.createTextNode(text);
-					newWhat.appendChild(newText);
-					where.appendChild(newWhat);
-				}
+	// 			function createDetails(what, text, where, className) {
+	// 				let newWhat = document.createElement(what);
+	// 				newWhat.setAttribute('class', className);
+	// 				let newText = document.createTextNode(text);
+	// 				newWhat.appendChild(newText);
+	// 				where.appendChild(newWhat);
+	// 			}
 
-				lhr.open("POST", "edit-accommodation.php", true); //true means it is asynchronous // Send variables through the url
-				lhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); 
-				lhr.send("accoId"+accoId.value+"&tripId="+tripId.value);
+	// 			lhr.open("POST", "../edit-trip/edit-transportation.php", true); 
+	// 			lhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); 
+	// 			lhr.send("accoId"+accoId.value+"&tripId="+tripId.value);
 
-				// var accoIdLink = document.getElementById('editAcco');
-				// // console.log(tripH);
-				// console.log(accoIdLink);
-				// tripH.appendChild(document.createElement(res[0].accoId.tripId));
-			}
-		} //function(e) ends
-	} //function showLinks ends
+	// 			// var accoIdLink = document.getElementById('editAcco');
+	// 			// // console.log(tripH);
+	// 			// console.log(accoIdLink);
+	// 			// tripH.appendChild(document.createElement(res[0].accoId.tripId));
+	// 		}
+	// 	} //function(e) ends
+	// } //function showLinks ends
 
 };

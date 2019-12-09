@@ -1,6 +1,7 @@
 <?php
 
 include("../includes/session.php");
+include("../includes/logo.php");
 $tripId = $_GET['tripId'];
 
 ?>
@@ -17,6 +18,7 @@ $tripId = $_GET['tripId'];
 
 	<body class="grey">
 		<div class="container ">
+		<a class="delete" href="../dashboard/show-trips-dashboard.php">Back to your Trips</a>
 			<div class="box-wide-outer">
             	<div class="form-container">
 					<div class="form-input half">
@@ -24,28 +26,30 @@ $tripId = $_GET['tripId'];
 						<h2 id="tripDest"></h2><br>
 					</div>
 
-					<div class="form-input inline">
-						<h2 id="fromDate"></h2> <h2 id="toDate"></h2>
+					<h1 class="categoryHeaders">Dates:</h1>
+					<div class="form-inputInline">
+						<p id="fromDate" class="tripDates"></p> <p id="toDate" class="tripDates"> to </p>
 					</div>
 					
-					<label>Stays</label>
-					<div class="box-wide-inside" id="accoContent">
-						<a id="editAcco" href="">Edit Accommodation</a>
-					</div>
+					<h1 class="categoryHeaders">Stays</h1>
+					<a href="../edit-trip/edit-accommodation.php?tripId=<?php echo($tripId); ?>" class="addLinks">Add Accomodation</a>
+					<div class="box-wide-inside" id="accoContent"></div>
 
-					<label>Events</label>
+					<h1 class="categoryHeaders">Events</h1>
+					<a href="../edit-trip/edit-events.php?tripId=<?php echo($tripId); ?>" class="addLinks">Add Event</a>
 					<div class="box-wide-inside" id="eventsContent">
 					</div>
 
-					<label>Transportation</label>
+					<h1 class="categoryHeaders">Transportation</h1>
+					<a href="../edit-trip/edit-transportation.php?tripId=<?php echo($tripId); ?>" class="addLinks">Add Transportation</a>
 					<div class="box-wide-inside" id="transContent">
 					</div> 
 					
-					<label>Others</label>
+					<h1 class="categoryHeaders">Others</h1>
 					<div class="box-wide-inside" id="othersContent">
 					</div>
 
-					<label>Docs</label>
+					<h1 class="categoryHeaders">Docs</h1>
 					<div class="box-wide-inside" id="filesContent">
 					</div> 
 				</div>
