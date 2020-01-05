@@ -4,7 +4,7 @@ The ultimate travel management app.
 
 ## Getting Started
 
-This was our first group project for our web development & design course whilst studying Interactive Media Mangement at Sheridan College. The idea behind it is quite simple and universal: planning a holiday is stressful! There are so many booking information, details & tickets spread accross multiple platforms, emails and accounts. Tripstr tries to simplify that aspect of travelling by having documents, flights, transportation & accomodation in one spot. 
+This was our first group project for our web development & design course whilst studying Interactive Media Management at Sheridan College. The idea behind it is quite simple and universal: planning a holiday is stressful! There are so many booking information, details & tickets spread across multiple platforms, emails and accounts. Tripstr tries to simplify that aspect of travelling by having documents, flights, transportation & accommodation in one spot.
 
 ### Process
 
